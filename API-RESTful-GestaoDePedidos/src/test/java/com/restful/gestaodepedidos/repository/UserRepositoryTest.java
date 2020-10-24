@@ -11,12 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.restful.gestaodepedidos.domain.User;
 import com.restful.gestaodepedidos.domain.enums.Role;
 
 @TestMethodOrder(OrderAnnotation.class)
 @SpringBootTest
+@WebAppConfiguration
 public class UserRepositoryTest {
 	
 	@Autowired UserRepository repository;
