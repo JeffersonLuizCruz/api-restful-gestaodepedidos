@@ -10,6 +10,6 @@ import com.restful.gestaodepedidos.domain.RequestStage;
 @Repository
 public interface RequestStageRepository extends JpaRepository<RequestStage, Long>{
 	
-	public List<RequestStage> findByRequestId(Long id);
+	public List<RequestStage> findAllByRequestId(Long id);
 
 }
