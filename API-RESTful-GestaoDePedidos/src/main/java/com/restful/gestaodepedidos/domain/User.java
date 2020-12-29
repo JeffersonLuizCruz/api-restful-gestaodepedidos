@@ -12,7 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 import com.restful.gestaodepedidos.domain.enums.Role;
 
@@ -27,8 +28,8 @@ import lombok.Setter;
 @Entity(name = "user")
 public class User implements Serializable{
 	
-	private static final long serialVersionUID = 3641825375096925598L;
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -37,9 +38,11 @@ public class User implements Serializable{
 	private String nome;
 	
 	@Column(length = 100, nullable = false, unique = true)
+	@Email
 	private String email;
 	
-	@Column(length = 100, nullable = false)
+	@Column(nullable = false)
+	@Size(min = 6)
 	private String password;
 	
 	@Column(length = 35, nullable = false, unique = true)

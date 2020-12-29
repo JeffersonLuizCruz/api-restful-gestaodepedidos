@@ -28,9 +28,8 @@ import lombok.Setter;
 @Entity(name = "request_stage")
 public class RequestStage implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = -3955950352572981439L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -39,7 +38,7 @@ public class RequestStage implements Serializable{
 	private String description;
 	
 	@Column(name = "realization_date", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)//Hora/Data
+	@Temporal(TemporalType.TIMESTAMP)//Padrão com Hora/Data
 	private Date realizationDate;
 	
 	@Column(length = 75, nullable = false)
