@@ -31,8 +31,8 @@ import lombok.Setter;
 @Entity(name = "request")
 public class Request implements Serializable{
 
-	private static final long serialVersionUID = -1118312724533576309L;
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -43,7 +43,7 @@ public class Request implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;
 	
-	@Column(name = "creation_date", nullable = false)
+	@Column(name = "creation_date", nullable = false, updatable = false) // Essa data não pode ser mudada.Será fixa
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
@@ -51,11 +51,18 @@ public class Request implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private RequestState state;
 	
+	/*Quando existe uma notação @ManyToOne esse atributo fará parte da coluna da base de dados
+	 * Como uma chave-estrangeira
+	 * */
 	@ManyToOne
 	@JoinColumn(name = "owner_id", nullable = false)
 	private User owner;
 	
+	/*Quando é @OneToMany dentro da Tabela do bancode dados 'request' não existirá
+	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
+	 * ao @ManyToOne
+	 * */
 	@OneToMany(mappedBy = "request")
-	private List<RequestStage> stage = new ArrayList<>();
+	private List<RequestStage> stages = new ArrayList<>();
 
 }

@@ -37,7 +37,7 @@ public class RequestStage implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;
 	
-	@Column(name = "realization_date", nullable = false)
+	@Column(name = "realization_date", nullable = false, updatable = false) // Essa data não pode ser mudada.Será fixa
 	@Temporal(TemporalType.TIMESTAMP)//Padrão com Hora/Data
 	private Date realizationDate;
 	
@@ -45,10 +45,16 @@ public class RequestStage implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private RequestState state;
 	
+	/*Quando existe uma notação @ManyToOne esse atributo fará parte da coluna da base de dados
+	 * Como uma chave-estrangeira
+	 * */
 	@ManyToOne
 	@JoinColumn(name = "request_id", nullable = false)
 	private Request request;
 	
+	/*Quando existe uma notação @ManyToOne esse atributo fará parte da coluna da base de dados
+	 * Como uma chave-estrangeira
+	 * */
 	@ManyToOne
 	@JoinColumn(name = "owner_id", nullable = false)
 	private User owner; 

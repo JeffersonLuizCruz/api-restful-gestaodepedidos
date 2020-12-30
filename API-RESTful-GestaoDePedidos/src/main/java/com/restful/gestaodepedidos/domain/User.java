@@ -49,10 +49,18 @@ public class User implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	@OneToMany(mappedBy = "owner")
+	/*Quando é @OneToMany dentro da Tabela do bancode dados 'user' não existirá
+	 * uma coluna com o nome desse atribuito 'request'. Esse é apenas uma referência
+	 * ao @ManytoOne
+	 * */
+	@OneToMany(mappedBy = "owner") 
 	private List<Request> request = new ArrayList<>();
 	
+	/*Quando é @OneToMany dentro da Tabela do bancode dados 'user' não existirá
+	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
+	 * ao @ManyToOne
+	 * */
 	@OneToMany(mappedBy = "owner")
-	private List<RequestStage> stage = new ArrayList<>();
+	private List<RequestStage> stages = new ArrayList<>();
 
 }
