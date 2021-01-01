@@ -23,6 +23,7 @@ public interface RequestRepository extends JpaRepository<Request, Long>{
 	
 	/*@Query: A query deve obdeser a ordem implicita dos paramétros com segue abaixo:
 	 * */
+	
 	@Transactional(readOnly = false) // Dá permissão para alteração de uma coluna
 	@Modifying
 	@Query("UPDATE request SET state = ?2 WHERE id = ?1") // Diz para Spring JPA que foi criado um método especial

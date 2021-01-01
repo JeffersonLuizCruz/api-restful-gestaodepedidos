@@ -43,8 +43,8 @@ public class Request implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;
 	
-	@Column(name = "creation_date", nullable = false, updatable = false) // Essa data não pode ser mudada.Será fixa
-	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "creation_date", nullable = false, updatable = false) // Essa data não pode ser mudada.Será fixa com uso do updatable=false
+	@Temporal(TemporalType.TIMESTAMP) //Organiza a data em dd/mm/YYYY
 	private Date creationDate;
 	
 	@Column(length = 75, nullable = false)

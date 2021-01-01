@@ -60,7 +60,7 @@ public class UserRepositoryTest {
 	public void getByIdTest() {
 		
 		Optional<User> result = repository.findById(1L); //Buscar um usuário por meio de uma id .
-		User user = result.get(); //Método get() converte 'User user' para um Optional 
+		User user = result.get(); //Método .get() converte 'User user' para um Optional 
 		
 		assertThat(user.getPassword()).isEqualTo("2147483647");
 	}
