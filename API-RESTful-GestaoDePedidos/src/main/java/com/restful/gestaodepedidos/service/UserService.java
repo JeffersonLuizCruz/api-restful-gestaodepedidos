@@ -10,6 +10,8 @@ import com.restful.gestaodepedidos.domain.User;
 import com.restful.gestaodepedidos.repository.UserRepository;
 import com.restful.gestaodepedidos.util.HashUtil;
 
+/*Seria interessante essa camada de serviço ter uma implementação de interface com todos os métodos
+ * */
 @Service
 public class UserService {
 	
