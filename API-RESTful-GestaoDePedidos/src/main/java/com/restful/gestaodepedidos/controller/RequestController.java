@@ -17,14 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restful.gestaodepedidos.domain.Request;
+import com.restful.gestaodepedidos.domain.RequestStage;
 import com.restful.gestaodepedidos.service.RequestService;
+import com.restful.gestaodepedidos.service.RequestStageService;
 
 @RestController
 @RequestMapping("requests")
 public class RequestController {
 	
-	@Autowired
-	private RequestService requestService;
+	@Autowired private RequestService requestService;
+	@Autowired private RequestStageService stageService;
 	
 	@PostMapping
 	public ResponseEntity<Request> save(@RequestBody @Valid Request request){
@@ -58,6 +60,15 @@ public class RequestController {
 		List<Request> requests = requestService.listAll();
 		
 		return ResponseEntity.ok(requests);
+	}
+	
+		//http:localhost:8080/requests/1/request-stages
+	@GetMapping("/{id}/request-stages")
+	public ResponseEntity<List<RequestStage>> listAllStageById(@PathVariable Long id){
+		
+		List<RequestStage> stages = stageService.listAllByRequestId(id);
+		
+		return ResponseEntity.ok(stages);
 	}
 
 }
