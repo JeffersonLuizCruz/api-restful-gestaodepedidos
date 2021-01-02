@@ -38,7 +38,7 @@ public class UserService {
 		return updateUser;
 	}
 	
-	public User getByid(Long id) {
+	public User getById(Long id) {
 		Optional<User> result = repository.findById(id);
 		return result.get();
 	}
