@@ -63,7 +63,7 @@ public class Request implements Serializable{
 	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
 	 * ao @ManyToOne
 	 * */
-	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição(ou serialização) Json
+	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição durante  serialização para Json
 	@OneToMany(mappedBy = "request")
 	private List<RequestStage> stages = new ArrayList<>();
 

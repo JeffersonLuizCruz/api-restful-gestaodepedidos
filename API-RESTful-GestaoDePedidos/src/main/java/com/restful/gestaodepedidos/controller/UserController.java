@@ -22,7 +22,7 @@ import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping("users")
 public class UserController {
 	
 	@Autowired private UserService userService;

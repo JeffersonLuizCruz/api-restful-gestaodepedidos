@@ -57,7 +57,7 @@ public class User implements Serializable{
 	 * uma coluna com o nome desse atribuito 'request'. Esse é apenas uma referência
 	 * ao @ManytoOne
 	 * */
-	@Getter(onMethod = @__(@JsonIgnore)) //Ignora a requisição(ou serialização) Json
+	@Getter(onMethod = @__(@JsonIgnore)) //Ignora a requisição durante  serialização para Json
 	@OneToMany(mappedBy = "owner") 
 	private List<Request> request = new ArrayList<>();
 	
@@ -65,7 +65,7 @@ public class User implements Serializable{
 	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
 	 * ao @ManyToOne
 	 * */
-	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição(ou serialização) Json
+	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição durante  serialização para Json
 	@OneToMany(mappedBy = "owner")
 	private List<RequestStage> stages = new ArrayList<>();
 

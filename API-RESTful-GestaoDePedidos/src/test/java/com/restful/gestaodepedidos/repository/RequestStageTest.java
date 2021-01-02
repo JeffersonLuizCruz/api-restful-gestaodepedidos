@@ -32,7 +32,7 @@ public class RequestStageTest {
 		
 		RequestStage requestStage = new RequestStage(
 				null,
-				"Notebook Dell Comprado do site",
+				"Notebook HP Comprado Loja Ponto Frio",
 				new Date(),//O atributo data foi defino como na Classe Request como 'updatable = false'
 				RequestState.CLOSED,
 				request,

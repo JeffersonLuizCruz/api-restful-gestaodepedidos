@@ -27,10 +27,10 @@ public class UserRepositoryTest {
 		
 		User user = new User(
 				null,
-				"Hugo",
+				"Jefferson",
 				"jefferson@gmail.com",
 				"12345678",
-				Role.SIMPLE,
+				Role.ADMINISTRATOR,
 				null, //Pedido
 				null); //state
 		

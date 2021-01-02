@@ -9,43 +9,44 @@ import org.springframework.stereotype.Service;
 
 import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.repository.RequestRepository;
 
 @Service
 public class RequestService {
 	
 	@Autowired
-	private RequestService repository;
+	private RequestRepository requestRepository;
 	
 	public Request save(Request request) {
 		
 		request.setState(RequestState.OPEN);
 		request.setCreationDate(new Date());
 		
-		Request saveRequest = repository.save(request);
+		Request saveRequest = requestRepository.save(request);
 		return saveRequest;
 	}
 	
 	public Request update(Request update) {
 		
-		Request updateRequest = repository.save(update);
+		Request updateRequest = requestRepository.save(update);
 		return updateRequest;
 	}
 	
 	public Optional<Request> getById(Long id) {
 		
-		Optional<Request> result = repository.getById(id);
+		Optional<Request> result = requestRepository.findById(id);
 		return result;
 		}
 	
 	public List<Request> listAll(){
 		
-		List<Request> listRequest = repository.listAll();
+		List<Request> listRequest = requestRepository.findAll();
 		return listRequest;
 	}
 	
 	public List<Request> listAllOwnerId(Long ownerId){
 		
-		List<Request> listOwner = repository.listAllOwnerId(ownerId);
+		List<Request> listOwner = requestRepository.findAllByOwnerId(ownerId);
 		return listOwner;
 	}
 
