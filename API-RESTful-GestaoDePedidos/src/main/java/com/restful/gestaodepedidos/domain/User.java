@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.restful.gestaodepedidos.domain.enums.Role;
 
 import lombok.AllArgsConstructor;
@@ -35,12 +37,14 @@ public class User implements Serializable{
 	private Long id;
 	
 	@Column(length = 100, nullable = false)
-	private String nome;
+	private String name;
 	
 	@Column(length = 100, nullable = false, unique = true)
 	@Email
 	private String email;
 	
+	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição(ou serialização) Json
+	@Setter(onMethod = @__(@JsonProperty))//Ignora a resposta(ou deserialização) Json
 	@Column(nullable = false)
 	@Size(min = 6)
 	private String password;
@@ -49,10 +53,11 @@ public class User implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	/*Quando é @OneToMany dentro da Tabela do bancode dados 'user' não existirá
+	/*OBS: Quando é @OneToMany dentro da Tabela do bancode dados 'user' não existirá
 	 * uma coluna com o nome desse atribuito 'request'. Esse é apenas uma referência
 	 * ao @ManytoOne
 	 * */
+	@Getter(onMethod = @__(@JsonIgnore)) //Ignora a requisição(ou serialização) Json
 	@OneToMany(mappedBy = "owner") 
 	private List<Request> request = new ArrayList<>();
 	
@@ -60,6 +65,7 @@ public class User implements Serializable{
 	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
 	 * ao @ManyToOne
 	 * */
+	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição(ou serialização) Json
 	@OneToMany(mappedBy = "owner")
 	private List<RequestStage> stages = new ArrayList<>();
 

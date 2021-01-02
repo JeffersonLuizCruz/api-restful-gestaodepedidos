@@ -22,7 +22,7 @@ import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
 
 @RestController
-@RequestMapping(value = "users")
+@RequestMapping(value = "/users")
 public class UserController {
 	
 	@Autowired private UserService userService;
@@ -55,6 +55,7 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 	
+	@GetMapping
 	public ResponseEntity<List<User>> listAll(){
 		
 		List<User> users = userService.listAll();

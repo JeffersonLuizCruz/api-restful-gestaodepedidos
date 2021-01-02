@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
 
 import lombok.AllArgsConstructor;
@@ -62,6 +63,7 @@ public class Request implements Serializable{
 	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
 	 * ao @ManyToOne
 	 * */
+	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição(ou serialização) Json
 	@OneToMany(mappedBy = "request")
 	private List<RequestStage> stages = new ArrayList<>();
 
