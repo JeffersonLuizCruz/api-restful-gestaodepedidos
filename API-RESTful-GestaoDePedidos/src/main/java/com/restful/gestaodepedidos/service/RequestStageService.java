@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.restful.gestaodepedidos.domain.RequestStage;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.exception.NotFoundException;
 import com.restful.gestaodepedidos.repository.RequestRepository;
 import com.restful.gestaodepedidos.repository.RequestStageRepository;
 
@@ -35,13 +36,13 @@ public class RequestStageService {
 		return createStage;
 	}
 	
-	public Optional<RequestStage> getById(Long id) {
+	public RequestStage getById(Long id) {
 		
 		Optional<RequestStage> result = stageRepository.findById(id);
 		
-		return result;
+		return result.orElseThrow(() -> new NotFoundException("Não existe RequestStage com id = " + id));
 	}
-	
+	//http:localhost:8080/requests/1/request-stages
 	public List<RequestStage> listAllByRequestId(Long requestId){
 		
 		List<RequestStage> listRequest = stageRepository.findAllByRequestId(requestId);

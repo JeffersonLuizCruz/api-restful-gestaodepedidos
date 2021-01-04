@@ -75,7 +75,7 @@ public class UserController {
 	@GetMapping("/{id}/requests")
 	public ResponseEntity<List<Request>> listAllRequestId(@PathVariable Long id){
 		
-		List<Request> requests = requestService.listAllOwnerId(id);
+		List<Request> requests = requestService.listAllByOwnerId(id);
 		
 		return ResponseEntity.ok(requests);
 	}

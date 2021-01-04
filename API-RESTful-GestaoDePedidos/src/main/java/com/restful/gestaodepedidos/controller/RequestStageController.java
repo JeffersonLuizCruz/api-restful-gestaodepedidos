@@ -1,6 +1,5 @@
 package com.restful.gestaodepedidos.controller;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,9 +31,9 @@ public class RequestStageController {
 	@GetMapping("/{id}")
 	public ResponseEntity<RequestStage> getById(@PathVariable Long id){
 		
-		Optional<RequestStage> stage = stageService.getById(id);
+		RequestStage stage = stageService.getById(id);
 		
-		return ResponseEntity.ok(stage.get());
+		return ResponseEntity.ok(stage);
 	}
 	
 	

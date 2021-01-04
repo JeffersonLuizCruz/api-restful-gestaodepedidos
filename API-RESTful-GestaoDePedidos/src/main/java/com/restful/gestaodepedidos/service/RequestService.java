@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.exception.NotFoundException;
 import com.restful.gestaodepedidos.repository.RequestRepository;
 
 @Service
@@ -32,10 +33,10 @@ public class RequestService {
 		return updateRequest;
 	}
 	
-	public Optional<Request> getById(Long id) {
+	public Request getById(Long id) {
 		
 		Optional<Request> result = requestRepository.findById(id);
-		return result;
+		return result.orElseThrow(() -> new NotFoundException("Não existe Request com id = " + id));
 		}
 	
 	public List<Request> listAll(){
@@ -43,8 +44,8 @@ public class RequestService {
 		List<Request> listRequest = requestRepository.findAll();
 		return listRequest;
 	}
-	
-	public List<Request> listAllOwnerId(Long ownerId){
+	//http:localhost:8080/users/1/requests
+	public List<Request> listAllByOwnerId(Long ownerId){
 		
 		List<Request> listOwner = requestRepository.findAllByOwnerId(ownerId);
 		return listOwner;

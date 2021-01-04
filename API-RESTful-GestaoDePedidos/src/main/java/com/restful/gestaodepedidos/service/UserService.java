@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.restful.gestaodepedidos.domain.User;
+import com.restful.gestaodepedidos.exception.NotFoundException;
 import com.restful.gestaodepedidos.repository.UserRepository;
 import com.restful.gestaodepedidos.util.HashUtil;
 
@@ -39,8 +40,9 @@ public class UserService {
 	}
 	
 	public User getById(Long id) {
+		
 		Optional<User> result = repository.findById(id);
-		return result.get();
+		return result.orElseThrow(() -> new NotFoundException("Não existe Owner com id = " + id));
 	}
 	
 	public List<User> listAll() {

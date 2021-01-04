@@ -49,7 +49,7 @@ public class RequestController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Request> getById(@PathVariable Long id){
 		
-		Optional<Request> request = requestService.getById(id);
+		Optional<Request> request = Optional.of(requestService.getById(id));
 		
 		return ResponseEntity.ok(request.get());
 	}
