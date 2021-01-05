@@ -24,7 +24,7 @@ import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping(value = "users")
 public class UserController {
 	
 	@Autowired private UserService userService;
@@ -66,8 +66,11 @@ public class UserController {
 	
 	@GetMapping  //Esse método é uma evolução do listAll()
 	public ResponseEntity<PageModel<User>> listAll(
-			@RequestParam("page") int page,
-			@RequestParam("size") int size){
+			/*defaultValue = "0" - caso o cliente não informe a paginação será paginado por padrão a página 0.
+			 * Enquanto defaultValue = "10" - faz a paginação do tamanho 10. Isso evita o erro 400 Not found.
+			 * */ 
+			@RequestParam(value = "page", defaultValue = "0") int page, 
+			@RequestParam(value = "size", defaultValue = "10") int size){
 		
 		PageRequestModel pr = new PageRequestModel(page, size);
 		PageModel<User> pm = userService.listAllByOnLazyModel(pr);
@@ -96,8 +99,8 @@ public class UserController {
 	@GetMapping("/{id}/requests")
 	public ResponseEntity<PageModel<Request>> listAllByRequestById(
 			@PathVariable Long id,
-			@RequestParam("size") int size,
-			@RequestParam("page") int page) {
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "10") int size) {
 
 		PageRequestModel pr = new PageRequestModel(page, size); // cria paginação
 		PageModel<Request> pm = requestService.listAllByOwnerIdOnLazyModel(id, pr); //inseri paginação

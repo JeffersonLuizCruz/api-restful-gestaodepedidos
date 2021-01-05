@@ -15,7 +15,7 @@ import com.restful.gestaodepedidos.domain.RequestStage;
 import com.restful.gestaodepedidos.service.RequestStageService;
 
 @RestController
-@RequestMapping("request-stages")
+@RequestMapping(value = "request-stages")
 public class RequestStageController {
 	
 	@Autowired private RequestStageService stageService;

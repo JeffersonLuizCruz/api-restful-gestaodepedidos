@@ -24,7 +24,7 @@ import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.RequestStageService;
 
 @RestController
-@RequestMapping("requests")
+@RequestMapping(value = "requests")
 public class RequestController {
 	
 	@Autowired private RequestService requestService;
@@ -66,8 +66,8 @@ public class RequestController {
 	
 	@GetMapping  //Esse método é uma evolução do listAll()
 	public ResponseEntity<PageModel<Request>> listAll(
-			@RequestParam("page") int page,
-			@RequestParam("size") int size){
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "10") int size){
 		
 		PageRequestModel pr = new PageRequestModel(page, size);
 		
@@ -89,8 +89,8 @@ public class RequestController {
 	@GetMapping("/{id}/request-stages")
 	public ResponseEntity<PageModel<RequestStage>> listAllStageById(
 			@PathVariable Long id,
-			@RequestParam("page") int page,
-			@RequestParam("size") int size){
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "10") int size){
 		
 		PageRequestModel pr = new PageRequestModel(page, size);
 		PageModel<RequestStage> pm = stageService.listAllByRequestIdOnLazyModel(id, pr);
