@@ -1,6 +1,5 @@
 package com.restful.gestaodepedidos.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -14,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.RequestStage;
+import com.restful.gestaodepedidos.domain.model.PageModel;
+import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.RequestStageService;
 
@@ -54,21 +56,47 @@ public class RequestController {
 		return ResponseEntity.ok(request.get());
 	}
 	
-	@GetMapping
-	public ResponseEntity<List<Request>> listAll(){
+//	@GetMapping
+//	public ResponseEntity<List<Request>> listAll(){
+//		
+//		List<Request> requests = requestService.listAll();
+//		
+//		return ResponseEntity.ok(requests);
+//	}
+	
+	@GetMapping  //Esse método é uma evolução do listAll()
+	public ResponseEntity<PageModel<Request>> listAll(
+			@RequestParam("page") int page,
+			@RequestParam("size") int size){
 		
-		List<Request> requests = requestService.listAll();
+		PageRequestModel pr = new PageRequestModel(page, size);
 		
-		return ResponseEntity.ok(requests);
+		PageModel<Request> pm = requestService.listAllByOnLazyModel(pr);
+		
+		return ResponseEntity.ok(pm);
 	}
 	
 		//http:localhost:8080/requests/1/request-stages
+//	@GetMapping("/{id}/request-stages")
+//	public ResponseEntity<List<RequestStage>> listAllStageById(@PathVariable Long id){
+//		
+//		List<RequestStage> stages = stageService.listAllByRequestId(id);
+//		
+//		return ResponseEntity.ok(stages);
+//	
+//	}
+	//http:localhost:8080/requests/1/request-stages
 	@GetMapping("/{id}/request-stages")
-	public ResponseEntity<List<RequestStage>> listAllStageById(@PathVariable Long id){
+	public ResponseEntity<PageModel<RequestStage>> listAllStageById(
+			@PathVariable Long id,
+			@RequestParam("page") int page,
+			@RequestParam("size") int size){
 		
-		List<RequestStage> stages = stageService.listAllByRequestId(id);
+		PageRequestModel pr = new PageRequestModel(page, size);
+		PageModel<RequestStage> pm = stageService.listAllByRequestIdOnLazyModel(id, pr);
 		
-		return ResponseEntity.ok(stages);
+		return ResponseEntity.ok(pm);
+	
 	}
 
 }

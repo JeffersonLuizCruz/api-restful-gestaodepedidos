@@ -1,6 +1,5 @@
 package com.restful.gestaodepedidos.controller;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -13,10 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.User;
+import com.restful.gestaodepedidos.domain.model.PageModel;
+import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.dto.UserLoginDto;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
@@ -27,7 +29,6 @@ public class UserController {
 	
 	@Autowired private UserService userService;
 	@Autowired private RequestService requestService;
-	
 	
 	
 	@PostMapping
@@ -55,12 +56,23 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 	
-	@GetMapping
-	public ResponseEntity<List<User>> listAll(){
+//	@GetMapping
+//	public ResponseEntity<List<User>> listAll(){
+//		
+//		List<User> users = userService.listAll();
+//		
+//		return ResponseEntity.ok(users);
+//	}
+	
+	@GetMapping  //Esse método é uma evolução do listAll()
+	public ResponseEntity<PageModel<User>> listAll(
+			@RequestParam("page") int page,
+			@RequestParam("size") int size){
 		
-		List<User> users = userService.listAll();
+		PageRequestModel pr = new PageRequestModel(page, size);
+		PageModel<User> pm = userService.listAllByOnLazyModel(pr);
 		
-		return ResponseEntity.ok(users);
+		return ResponseEntity.ok(pm);
 	}
 	
 	@PostMapping("/login")
@@ -71,13 +83,25 @@ public class UserController {
 		return ResponseEntity.ok(loggerUser);
 	}
 	
-		//http:localhost:8080/users/1/requests
+//		//http://localhost:8080/users/1/requests-list /// Método Opcional
+//	@GetMapping("/{id}/requests-list")
+//	public ResponseEntity<List<Request>> listAllByRequestById(@PathVariable Long id){
+//		
+//		List<Request> requests = requestService.listAllByOwnerId(id);
+//		
+//		return ResponseEntity.ok(requests);
+//	}
+	
+	//http:localhost:8080/users/1/requests /// Esse método é uma evolução do listAllByRequestId()
 	@GetMapping("/{id}/requests")
-	public ResponseEntity<List<Request>> listAllRequestId(@PathVariable Long id){
-		
-		List<Request> requests = requestService.listAllByOwnerId(id);
-		
-		return ResponseEntity.ok(requests);
-	}
+	public ResponseEntity<PageModel<Request>> listAllByRequestById(
+			@PathVariable Long id,
+			@RequestParam("size") int size,
+			@RequestParam("page") int page) {
 
+		PageRequestModel pr = new PageRequestModel(page, size); // cria paginação
+		PageModel<Request> pm = requestService.listAllByOwnerIdOnLazyModel(id, pr); //inseri paginação
+
+		return ResponseEntity.ok(pm);
+	}
 }

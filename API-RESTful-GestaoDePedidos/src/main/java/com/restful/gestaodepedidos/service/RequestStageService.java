@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.restful.gestaodepedidos.domain.RequestStage;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.domain.model.PageModel;
+import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.exception.NotFoundException;
 import com.restful.gestaodepedidos.repository.RequestRepository;
 import com.restful.gestaodepedidos.repository.RequestStageRepository;
@@ -48,6 +53,20 @@ public class RequestStageService {
 		List<RequestStage> listRequest = stageRepository.findAllByRequestId(requestId);
 		
 		return listRequest;
+	}
+	
+	public PageModel<RequestStage> listAllByRequestIdOnLazyModel(Long requestId, PageRequestModel pr){
+		
+		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); // cria paginação
+		Page<RequestStage> page = stageRepository.findAllByRequestId(requestId, pageable);// inserir a paginação
+		
+		PageModel<RequestStage> pm = new PageModel<>(
+				(int)page.getTotalElements(),
+				page.getSize(),
+				page.getTotalPages(),
+				page.getContent());
+		
+		return pm;
 	}
 
 }

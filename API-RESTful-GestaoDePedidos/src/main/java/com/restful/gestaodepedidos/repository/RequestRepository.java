@@ -2,6 +2,8 @@ package com.restful.gestaodepedidos.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +17,9 @@ import com.restful.gestaodepedidos.domain.enums.RequestState;
 public interface RequestRepository extends JpaRepository<Request, Long>{
 	
 	public List<Request> findAllByOwnerId(Long id);
+	
+	//paginação modo lazy
+	public Page<Request> findAllByOwnerId(Long id, Pageable pageable);
 	
 	/*Método update: o método update vai ajudar a alterar o estado de um pedido quando
 	for adicionar um novo estágio de pedido.

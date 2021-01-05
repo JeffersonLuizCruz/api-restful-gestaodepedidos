@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.domain.model.PageModel;
+import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.exception.NotFoundException;
 import com.restful.gestaodepedidos.repository.RequestRepository;
 
@@ -44,11 +49,40 @@ public class RequestService {
 		List<Request> listRequest = requestRepository.findAll();
 		return listRequest;
 	}
-	//http:localhost:8080/users/1/requests
-	public List<Request> listAllByOwnerId(Long ownerId){
+	
+public PageModel<Request> listAllByOnLazyModel(PageRequestModel pr){
 		
-		List<Request> listOwner = requestRepository.findAllByOwnerId(ownerId);
-		return listOwner;
+		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); // cria a paginação
+		Page<Request> page = requestRepository.findAll(pageable); // inseri os dados numa paginação.
+		
+		PageModel<Request> pm = new PageModel<>(
+				(int)page.getTotalElements(),
+				page.getSize(), page.getTotalPages(),
+				page.getContent());
+		
+		return pm;
+	}
+	
+//	//http://localhost:8080/users/1/requests-list /// Método Opcional
+//	public List<Request> listAllByOwnerId(Long ownerId){
+//		
+//		List<Request> listOwner = requestRepository.findAllByOwnerId(ownerId);
+//		return listOwner;
+//	}
+	
+	//http://localhost:8080/users/1/requests
+	public PageModel<Request> listAllByOwnerIdOnLazyModel(Long ownerId, PageRequestModel pr){
+		
+		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); // cria paginação
+		Page<Request> page = requestRepository.findAllByOwnerId(ownerId, pageable);// inserir a paginação
+		
+		PageModel<Request> pm = new PageModel<>(
+				(int)page.getTotalElements(),
+				page.getSize(),
+				page.getTotalPages(),
+				page.getContent());
+		
+		return pm;
 	}
 
 }
