@@ -49,7 +49,7 @@ public class User implements Serializable{
 	@Size(min = 6)
 	private String password;
 	
-	@Column(length = 35, nullable = false, unique = true)
+	@Column(length = 35, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	

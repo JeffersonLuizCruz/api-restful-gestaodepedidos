@@ -1,7 +1,6 @@
 package com.restful.gestaodepedidos.service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,16 +43,16 @@ public class RequestService {
 		return result.orElseThrow(() -> new NotFoundException("Não existe Request com id = " + id));
 		}
 	
-	public List<Request> listAll(){
-		
-		List<Request> listRequest = requestRepository.findAll();
-		return listRequest;
-	}
+//	public List<Request> listAll(){
+//		
+//		List<Request> listRequest = requestRepository.findAll();
+//		return listRequest;
+//	}
 	
 public PageModel<Request> listAllByOnLazyModel(PageRequestModel pr){
 		
 		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); // cria a paginação
-		Page<Request> page = requestRepository.findAll(pageable); // inseri os dados numa paginação.
+		Page<Request> page = requestRepository.findAll(pageable); // inseri os dados numa pagina.
 		
 		PageModel<Request> pm = new PageModel<>(
 				(int)page.getTotalElements(),

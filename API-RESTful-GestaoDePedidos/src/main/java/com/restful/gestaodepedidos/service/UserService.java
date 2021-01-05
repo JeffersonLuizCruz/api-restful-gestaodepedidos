@@ -27,8 +27,8 @@ public class UserService {
 	public User save(User user) {
 		/*Antes de criar o usuário é necessário criar o hash da senha do usuário
 		 * */
-		String hash = HashUtil.getSecureHash(user.getPassword()); // Hash gerado do usuário
-		user.setPassword(hash); // Hash inserido no usuário
+		String hash = HashUtil.getSecureHash(user.getPassword()); // Hash da senha do usuário gerada.
+		user.setPassword(hash); // Hash da senha do usuário inserida.
 		
 		User createUser = userRepository.save(user);
 		return createUser;
@@ -59,7 +59,7 @@ public class UserService {
 	public PageModel<User> listAllByOnLazyModel(PageRequestModel pr){
 		
 		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); // cria a paginação
-		Page<User> page = userRepository.findAll(pageable); // inseri os dados numa paginação.
+		Page<User> page = userRepository.findAll(pageable); // inseri os dados numa pagina.
 		
 		PageModel<User> pm = new PageModel<>(
 				(int)page.getTotalElements(),
@@ -76,6 +76,11 @@ public class UserService {
 				
 		Optional<User> access = userRepository.login(email, password); // Hash inserido
 		return access.get();
+	}
+	
+	public int updateRole(User user) {
+		
+		return userRepository.updateRole(user.getId(), user.getRole());
 	}
 
 }

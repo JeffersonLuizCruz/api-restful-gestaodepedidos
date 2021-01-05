@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,7 @@ import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.User;
 import com.restful.gestaodepedidos.domain.model.PageModel;
 import com.restful.gestaodepedidos.domain.model.PageRequestModel;
+import com.restful.gestaodepedidos.dto.UpdateRoleDto;
 import com.restful.gestaodepedidos.dto.UserLoginDto;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
@@ -97,7 +99,7 @@ public class UserController {
 	
 	//http:localhost:8080/users/1/requests /// Esse método é uma evolução do listAllByRequestId()
 	@GetMapping("/{id}/requests")
-	public ResponseEntity<PageModel<Request>> listAllByRequestById(
+	public ResponseEntity<PageModel<Request>> listAllByRequestId(
 			@PathVariable Long id,
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "size", defaultValue = "10") int size) {
@@ -106,5 +108,17 @@ public class UserController {
 		PageModel<Request> pm = requestService.listAllByOwnerIdOnLazyModel(id, pr); //inseri paginação
 
 		return ResponseEntity.ok(pm);
+	}
+	
+	@PatchMapping("/role/{id}")
+	public ResponseEntity<?> updateRole(@PathVariable Long id ,@RequestBody UpdateRoleDto userDto){
+		
+		User user = new User();
+		user.setId(id);
+		user.setRole(userDto.getRole());
+		
+		userService.updateRole(user);
+		
+		return ResponseEntity.ok().build();
 	}
 }

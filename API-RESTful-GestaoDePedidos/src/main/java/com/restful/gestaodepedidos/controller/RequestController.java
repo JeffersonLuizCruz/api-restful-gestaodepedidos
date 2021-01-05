@@ -65,7 +65,7 @@ public class RequestController {
 //	}
 	
 	@GetMapping  //Esse método é uma evolução do listAll()
-	public ResponseEntity<PageModel<Request>> listAll(
+	public ResponseEntity<PageModel<Request>> listAllByOnLazyModel(
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "size", defaultValue = "10") int size){
 		
