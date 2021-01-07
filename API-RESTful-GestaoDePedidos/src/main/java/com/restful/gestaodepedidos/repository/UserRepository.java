@@ -32,7 +32,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Transactional(readOnly = false)
 	@Modifying
-	@Query("UPDATE user SET role = ?2 WHERE id = ?1")
-	public int updateRole(Long id, Role role);
+	@Query("UPDATE user SET role = ?2 WHERE id = ?1") //SQL Puro. É necessário usar um parametro 'updatable=false'
+	public int updateRole(Long id, Role role);		  // no atributo role da classe User. Veja essa classe para entender.
 
 }

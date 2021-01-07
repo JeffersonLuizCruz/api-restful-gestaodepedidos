@@ -22,6 +22,8 @@ import com.restful.gestaodepedidos.domain.model.PageModel;
 import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.dto.UpdateRoleDto;
 import com.restful.gestaodepedidos.dto.UserLoginDto;
+import com.restful.gestaodepedidos.dto.UserRequestDto;
+import com.restful.gestaodepedidos.dto.UserUpdateDto;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
 
@@ -34,18 +36,22 @@ public class UserController {
 	
 	
 	@PostMapping
-	public ResponseEntity<User> save(@RequestBody @Valid User user) {
+	public ResponseEntity<User> save(@RequestBody @Valid UserRequestDto userDto) {
 		
-		User createUser = userService.save(user);
+		User userTosave = userDto.transformToUser();
+		
+		User createUser = userService.save(userTosave);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(createUser);
 		}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<User> update(@PathVariable Long id,@Valid @RequestBody User user){
+	public ResponseEntity<User> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userDto){
+		
+		User user = userDto.transformToUser();
 		
 		user.setId(id);
-		User updateUser = userService.save(user);
+		User updateUser = userService.update(user);
 		
 		return ResponseEntity.ok(updateUser);
 	}
@@ -81,7 +87,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<User> login(@RequestBody UserLoginDto user){
+	public ResponseEntity<User> login(@Valid @RequestBody UserLoginDto user){
 		
 		User loggerUser = userService.login(user.getEmail(), user.getPassword());
 		
@@ -111,7 +117,7 @@ public class UserController {
 	}
 	
 	@PatchMapping("/role/{id}")
-	public ResponseEntity<?> updateRole(@PathVariable Long id ,@RequestBody UpdateRoleDto userDto){
+	public ResponseEntity<?> updateRole(@PathVariable Long id , @Valid @RequestBody UpdateRoleDto userDto){
 		
 		User user = new User();
 		user.setId(id);

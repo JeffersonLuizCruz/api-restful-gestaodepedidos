@@ -1,5 +1,7 @@
 package com.restful.gestaodepedidos.dto;
 
+import javax.validation.constraints.NotNull;
+
 import com.restful.gestaodepedidos.domain.enums.Role;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.Setter;
 @Getter @Setter
 public class UpdateRoleDto {
 	
+	@NotNull(message = "Valor não pode ser nulo.")
 	private Role role;
 
 }

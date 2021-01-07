@@ -12,8 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -40,16 +38,18 @@ public class User implements Serializable{
 	private String name;
 	
 	@Column(length = 100, nullable = false, unique = true)
-	@Email
 	private String email;
 	
 	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição(ou serialização) Json
 	@Setter(onMethod = @__(@JsonProperty))//Ignora a resposta(ou deserialização) Json
 	@Column(nullable = false)
-	@Size(min = 6)
 	private String password;
 	
-	@Column(length = 35, nullable = false)
+	/*A probiedade updatable decidi se a coluna fará parte da instrução de atualização. Com o valor 'false'
+	 * significa que o Hibernate ignora a coluna ao enviar atualizações para o banco de dados.
+	 * 
+	 * */
+	@Column(nullable = false, updatable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
