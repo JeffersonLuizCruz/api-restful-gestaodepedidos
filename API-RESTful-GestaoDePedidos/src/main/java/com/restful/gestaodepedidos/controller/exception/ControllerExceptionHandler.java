@@ -1,6 +1,8 @@
 package com.restful.gestaodepedidos.controller.exception;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -45,8 +47,13 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler{
 			HttpStatus status,
 			WebRequest request) {
 		
-		String defaultMessage = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
-		ApiError error = new ApiError(HttpStatus.BAD_REQUEST.value(), defaultMessage, new Date());
+		List<String> errors = new ArrayList<>();
+		
+		ex.getBindingResult().getAllErrors().forEach(error -> {errors.add(error.getDefaultMessage());
+		});
+		
+		String defaultMessage = "Campo(s) inválido(s).";
+		ApiErrorList error = new ApiErrorList(HttpStatus.BAD_REQUEST.value(), defaultMessage, new Date(), errors);
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
