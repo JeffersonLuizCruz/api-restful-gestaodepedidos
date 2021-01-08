@@ -20,6 +20,8 @@ import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.RequestStage;
 import com.restful.gestaodepedidos.domain.model.PageModel;
 import com.restful.gestaodepedidos.domain.model.PageRequestModel;
+import com.restful.gestaodepedidos.dto.RequestDto;
+import com.restful.gestaodepedidos.dto.RequestUpdateDto;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.RequestStageService;
 
@@ -31,16 +33,18 @@ public class RequestController {
 	@Autowired private RequestStageService stageService;
 	
 	@PostMapping
-	public ResponseEntity<Request> save(@RequestBody @Valid Request request){
+	public ResponseEntity<Request> save(@RequestBody @Valid RequestDto requestDto){
 		
+		Request request = requestDto.transformToRequest();
 		Request createRequest = requestService.save(request);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(createRequest);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Request> update(@PathVariable Long id, @RequestBody @Valid Request request){
+	public ResponseEntity<Request> update(@PathVariable Long id, @RequestBody @Valid RequestUpdateDto requestDto){
 		
+		Request request = requestDto.transformToRequest();
 		request.setId(id);
 		
 		Request updateRequest = requestService.update(request);

@@ -35,9 +35,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler{
 		}
 		
 		O método handleMethodArgumentNotValid() personaliza erros de execução json.
-		
-		O método abaixo renderiza um valor errado da variável email: "email": "jeffersongmail.com" .
-		String defaultMessage = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
+		Todas notações @Notnull ou @Nulblank e outras terão mensagem automatizada.
 	 * */
 	
 	@Override

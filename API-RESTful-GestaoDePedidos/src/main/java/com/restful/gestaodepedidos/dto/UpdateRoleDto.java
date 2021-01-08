@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter @Setter
 public class UpdateRoleDto {
 	
-	@NotNull(message = "Valor não pode ser nulo.")
+	@NotNull(message = "Campo 'role'- Valor não pode ser nulo.")
 	private Role role;
 
 }
