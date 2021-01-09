@@ -34,5 +34,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Modifying
 	@Query("UPDATE user SET role = ?2 WHERE id = ?1") //SQL Puro. É necessário usar um parametro 'updatable=false'
 	public int updateRole(Long id, Role role);		  // no atributo role da classe User. Veja essa classe para entender.
+	
+	public Optional<User> findByEmail(String email);
 
 }
