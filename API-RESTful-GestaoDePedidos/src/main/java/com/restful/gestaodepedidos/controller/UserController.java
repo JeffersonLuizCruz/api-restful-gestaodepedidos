@@ -6,6 +6,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +37,7 @@ public class UserController {
 	
 	@Autowired private UserService userService;
 	@Autowired private RequestService requestService;
+	@Autowired private AuthenticationManager authManager;
 	
 	
 	@PostMapping
@@ -89,9 +94,11 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@Valid @RequestBody UserLoginDto user){
 		
-		User loggerUser = userService.login(user.getEmail(), user.getPassword());
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+		Authentication auth = authManager.authenticate(token);
 		
-		return ResponseEntity.ok(loggerUser);
+		SecurityContextHolder.getContext().setAuthentication(auth);
+		return ResponseEntity.ok(null);
 	}
 	
 //		//http://localhost:8080/users/1/requests-list /// Método Opcional
