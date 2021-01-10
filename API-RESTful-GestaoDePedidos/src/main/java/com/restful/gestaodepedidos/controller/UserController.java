@@ -1,6 +1,9 @@
 package com.restful.gestaodepedidos.controller;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ import com.restful.gestaodepedidos.dto.UpdateRoleDto;
 import com.restful.gestaodepedidos.dto.UserLoginDto;
 import com.restful.gestaodepedidos.dto.UserRequestDto;
 import com.restful.gestaodepedidos.dto.UserUpdateDto;
+import com.restful.gestaodepedidos.security.JwtManager;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
 
@@ -38,6 +42,7 @@ public class UserController {
 	@Autowired private UserService userService;
 	@Autowired private RequestService requestService;
 	@Autowired private AuthenticationManager authManager;
+	@Autowired private JwtManager jwtManager;
 	
 	
 	@PostMapping
@@ -91,14 +96,29 @@ public class UserController {
 		return ResponseEntity.ok(pm);
 	}
 	
-	@PostMapping("/login")
-	public ResponseEntity<User> login(@Valid @RequestBody UserLoginDto user){
-		
+	@PostMapping("/login")// O retorno é uma String porque o token é uma string e retorno está sendo no corpo e não do header.
+	public ResponseEntity<String> login(@Valid @RequestBody UserLoginDto user){
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
-		Authentication auth = authManager.authenticate(token);
+		////Depois de uma solicitação de login. Há um processamento de autenticação do token.
+		Authentication auth = authManager.authenticate(token); 
 		
+		//Busca o usuário para criar seu token
+		org.springframework.security.core.userdetails.User userSpring =
+				(org.springframework.security.core.userdetails.User) auth.getPrincipal(); //O getPrincipal retorna o próprio usuário.
+		
+		String email = userSpring.getUsername();
+		List<String> roles = userSpring.getAuthorities()
+										.stream()
+										.map(authority -> authority.getAuthority())
+										.collect(Collectors.toList());
+		
+		String jwt = jwtManager.createToken(email, roles);
+		
+		/*Depois que a solicitação fui autenticada. A autenticação ficará armazenada
+		 * */
 		SecurityContextHolder.getContext().setAuthentication(auth);
-		return ResponseEntity.ok(null);
+		
+		return ResponseEntity.ok(jwt);
 	}
 	
 //		//http://localhost:8080/users/1/requests-list /// Método Opcional
