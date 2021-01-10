@@ -29,6 +29,7 @@ import com.restful.gestaodepedidos.domain.model.PageModel;
 import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.dto.UpdateRoleDto;
 import com.restful.gestaodepedidos.dto.UserLoginDto;
+import com.restful.gestaodepedidos.dto.UserLoginResponseDto;
 import com.restful.gestaodepedidos.dto.UserRequestDto;
 import com.restful.gestaodepedidos.dto.UserUpdateDto;
 import com.restful.gestaodepedidos.security.JwtManager;
@@ -96,8 +97,8 @@ public class UserController {
 		return ResponseEntity.ok(pm);
 	}
 	
-	@PostMapping("/login")// O retorno é uma String porque o token é uma string e retorno está sendo no corpo e não do header.
-	public ResponseEntity<String> login(@Valid @RequestBody UserLoginDto user){
+	@PostMapping("/login")// O token está retornando no corpo
+	public ResponseEntity<UserLoginResponseDto> login(@Valid @RequestBody UserLoginDto user){
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
 		////Depois de uma solicitação de login. Há um processamento de autenticação do token.
 		Authentication auth = authManager.authenticate(token); 
@@ -112,13 +113,11 @@ public class UserController {
 										.map(authority -> authority.getAuthority())
 										.collect(Collectors.toList());
 		
-		String jwt = jwtManager.createToken(email, roles);
-		
 		/*Depois que a solicitação fui autenticada. A autenticação ficará armazenada
 		 * */
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		
-		return ResponseEntity.ok(jwt);
+		return ResponseEntity.ok(jwtManager.createToken(email,roles));
 	}
 	
 //		//http://localhost:8080/users/1/requests-list /// Método Opcional

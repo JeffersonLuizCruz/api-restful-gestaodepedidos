@@ -8,14 +8,18 @@ import com.restful.gestaodepedidos.util.HashUtil;
 @Component
 public class CustomPasswordEncoder implements PasswordEncoder{
 
-	@Override
+	@Override //Codifica a senha bruta.
 	public String encode(CharSequence rawPassword) {
 		
 		String hash = HashUtil.getSecureHash(rawPassword.toString());
 		return hash;
 	}
-
-	@Override
+	
+	/*Verifica se a senha codificada é a mesma que a bruta. 
+	 * Retorna verdadeiro se as senhas coincidem e falso se não coincidem.
+	 * A senha armazenada em si nunca é decodificada.
+	 * */
+	@Override 
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {
 		
 		String hash = HashUtil.getSecureHash(rawPassword.toString());

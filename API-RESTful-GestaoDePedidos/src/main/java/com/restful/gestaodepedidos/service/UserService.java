@@ -27,8 +27,8 @@ import com.restful.gestaodepedidos.util.HashUtil;
 @Service
 public class UserService implements UserDetailsService{
 	
-	@Autowired
-	private UserRepository userRepository;
+	@Autowired private UserRepository userRepository;
+	
 	
 	public User save(User user) {
 		/*Antes de criar o usuário é necessário criar o hash da senha do usuário
@@ -88,7 +88,8 @@ public class UserService implements UserDetailsService{
 		
 		return userRepository.updateRole(user.getId(), user.getRole());
 	}
-
+	
+	//Método para localizar um usuário com base no email e permissão de acesso.
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
@@ -97,7 +98,7 @@ public class UserService implements UserDetailsService{
 		
 		User user = result.get();
 		List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE " + user.getRole().name()));
-		
+		//Permite que a senha seja apagada após a autenticação.
 		org.springframework.security.core.userdetails.User userSpring = new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
 		return userSpring;
 	}
