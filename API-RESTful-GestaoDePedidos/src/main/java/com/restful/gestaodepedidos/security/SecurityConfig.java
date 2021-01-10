@@ -8,6 +8,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import com.restful.gestaodepedidos.service.UserService;
 
+/*WebSecurityConfigurerAdapter responsável por toda a segurança
+ *(protegendo os URLs do aplicativo, validando o nome de usuário
+ *e as senhas enviadas, redirecionando para o formulário de login, etc) dentro do seu aplicativo. 
+ * 
+ * */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -18,7 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
+		auth
+		.userDetailsService(userService)
+		.passwordEncoder(passwordEncoder);
 	}
 
 }
