@@ -19,8 +19,7 @@ import com.restful.gestaodepedidos.repository.RequestRepository;
 @Service
 public class RequestService {
 	
-	@Autowired
-	private RequestRepository requestRepository;
+	@Autowired private RequestRepository requestRepository;
 	
 	public Request save(Request request) {
 		

@@ -1,7 +1,7 @@
 package com.restful.gestaodepedidos.constant;
 
 /*Classe de criação de token. Aqui o token é apenas montado.
- * A classe JwtManager do pacote comrestful.gestaodepedidos.security
+ * A classe JwtManager do pacote com.restful.gestaodepedidos.security
  * é a responsável pela criação do token propiadamente dito.
  * */
 public class SecurityConstants {
@@ -13,4 +13,5 @@ public class SecurityConstants {
 	 * é a chave deste role.
 	 * */
 	public static final String JWT_ROLE_KEY = "role";
+	public static final String JWT_INVALID_MSG = "Token JWT inválido.";
 }

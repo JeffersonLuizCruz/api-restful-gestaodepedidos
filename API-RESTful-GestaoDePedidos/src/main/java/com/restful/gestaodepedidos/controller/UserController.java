@@ -113,7 +113,7 @@ public class UserController {
 										.map(authority -> authority.getAuthority())
 										.collect(Collectors.toList());
 		
-		/*Depois que a solicitação fui autenticada. A autenticação ficará armazenada
+		/*Depois que a solicitação foi autenticada. A autenticação ficará armazenada
 		 * */
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		
