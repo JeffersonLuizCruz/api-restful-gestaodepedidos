@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.restful.gestaodepedidos.exception.NotFoundException;
+import com.restful.gestaodepedidos.exception.UnauthorizationException;
 
 
 @ControllerAdvice
@@ -28,13 +30,21 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler{
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 		
 	}
+	
 	@ExceptionHandler(BadCredentialsException.class)// Método personalizado
 	public ResponseEntity<ApiError> handlerNotFoundException(BadCredentialsException ex){
 		
-		ApiError error = new ApiError(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), new Date());
+		ApiError error = new ApiError(HttpStatus.UNAUTHORIZED.value(), UnauthorizationException.MSG_UNAUTHORIZATION, new Date());
 		
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);	
+	}
+	
+	@ExceptionHandler(AccessDeniedException.class)// Método personalizado
+	public ResponseEntity<ApiError> handlerAccessDeniedException(AccessDeniedException ex){
 		
+		ApiError error = new ApiError(HttpStatus.FORBIDDEN.value(), ex.getMessage(), new Date());
+		
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);	
 	}
 	/*
 	 * http://localhost:8080/users/login

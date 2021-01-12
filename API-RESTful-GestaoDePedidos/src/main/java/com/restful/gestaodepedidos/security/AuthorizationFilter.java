@@ -33,7 +33,7 @@ public class AuthorizationFilter extends OncePerRequestFilter{
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String jwt = request.getHeader(HttpHeaders.AUTHORIZATION); //Busca o possível token que espera existe.
+		String jwt = request.getHeader(HttpHeaders.AUTHORIZATION); //Busca o possível token que espera existir.
 		
 		/*Se este token estiver nulo ou não iniciar com "Dearer" da classe 
 		 * SecurityConstants lance uma exception.
@@ -69,7 +69,8 @@ public class AuthorizationFilter extends OncePerRequestFilter{
 				grantedAuthorities.add(new SimpleGrantedAuthority(role));
 			});
 			
-			//Montar o autenticação para colocar no contexto de segurança.
+			//Montar o autenticação do usuário para colocar no contexto de segurança.
+			//É aqui que o usuário fica autenticado.
 			Authentication authentication = new UsernamePasswordAuthenticationToken(email, null, grantedAuthorities);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
@@ -90,6 +91,7 @@ public class AuthorizationFilter extends OncePerRequestFilter{
 			
 			return;
 		}
+		
 		filterChain.doFilter(request, response);
 	}
 

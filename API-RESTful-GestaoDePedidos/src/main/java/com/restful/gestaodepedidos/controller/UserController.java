@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,6 +34,7 @@ import com.restful.gestaodepedidos.dto.UserLoginDto;
 import com.restful.gestaodepedidos.dto.UserLoginResponseDto;
 import com.restful.gestaodepedidos.dto.UserRequestDto;
 import com.restful.gestaodepedidos.dto.UserUpdateDto;
+import com.restful.gestaodepedidos.security.AccessManager;
 import com.restful.gestaodepedidos.security.JwtManager;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
@@ -44,8 +47,10 @@ public class UserController {
 	@Autowired private RequestService requestService;
 	@Autowired private AuthenticationManager authManager;
 	@Autowired private JwtManager jwtManager;
+	@Autowired private AccessManager accessManager;
 	
 	
+	@Secured({"ROLE_ADMINISTRATOR"})
 	@PostMapping
 	public ResponseEntity<User> save(@RequestBody @Valid UserRequestDto userDto) {
 		
@@ -56,6 +61,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(createUser);
 		}
 	
+	@PreAuthorize("@accessManager.isOwner(#id)")
 	@PutMapping("/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userDto){
 		
@@ -142,6 +148,7 @@ public class UserController {
 		return ResponseEntity.ok(pm);
 	}
 	
+	@Secured({"ROLE_ADMINISTRATOR"})
 	@PatchMapping("/role/{id}")
 	public ResponseEntity<?> updateRole(@PathVariable Long id , @Valid @RequestBody UpdateRoleDto userDto){
 		

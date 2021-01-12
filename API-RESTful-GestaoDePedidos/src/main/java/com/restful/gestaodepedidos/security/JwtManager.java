@@ -32,7 +32,7 @@ public class JwtManager {
 		return new UserLoginResponseDto(jwt, expire, SecurityConstants.JWT_PROVIDER);
 	}
 	
-	//Métdo que valida o token retornando os claims.
+	//Métdo que valida o token.
 	public Claims parseToken(String jwt) {
 		Claims claims = Jwts.parser()
 				.setSigningKey(SecurityConstants.API_KEY.getBytes()) //analisa a chave do token

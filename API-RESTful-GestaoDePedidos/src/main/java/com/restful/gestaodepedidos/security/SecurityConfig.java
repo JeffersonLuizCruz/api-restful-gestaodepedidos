@@ -7,9 +7,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.restful.gestaodepedidos.service.UserService;
 
@@ -18,8 +21,11 @@ import com.restful.gestaodepedidos.service.UserService;
  *e as senhas enviadas, redirecionando para o formulário de login, etc) dentro do seu aplicativo. 
  * 
  * */
+
 @Configuration
 @EnableWebSecurity
+//Autenticação				//ADMISTRATOR		  //Asi mesmo
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired private UserService userService;
@@ -45,5 +51,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			web.ignoring().antMatchers(HttpMethod.POST, "/users/login");
 			super.configure(web);
 		}
+	
+	//Liberar as rotas somente quando o usuário estiver autenticado.
+	//Esse método é como se fosse a ativação do filtro da classe AuthorizationFilter.
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable() //Proteção contra o ataque csrf foi desabilitado. Porque será usando outro mecanismo de proteção.
+				   .authorizeRequests() //autorizar requisições.
+				   .anyRequest().authenticated(); //Depois da requisição autorizada. Agora habilita qualquer rota
+				   								 // para um usuário autenticado.
+		
+		http.addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+	}
 
 }
