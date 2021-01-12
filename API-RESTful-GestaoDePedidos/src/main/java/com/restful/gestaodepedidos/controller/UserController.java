@@ -61,6 +61,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(createUser);
 		}
 	
+	//Próprio usuário modifica seus dados.
 	@PreAuthorize("@accessManager.isOwner(#id)")
 	@PutMapping("/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userDto){

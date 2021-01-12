@@ -97,7 +97,7 @@ public class UserService implements UserDetailsService{
 		if(!result.isPresent()) throw new UsernameNotFoundException("Email não cadastrado: " + result);
 		
 		User user = result.get();
-		List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE " + user.getRole().name()));
+		List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
 		//Permite que a senha seja apagada após a autenticação.
 		org.springframework.security.core.userdetails.User userSpring = new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
 		return userSpring;
