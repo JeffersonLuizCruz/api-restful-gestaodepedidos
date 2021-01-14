@@ -22,7 +22,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 	 * 
 	 * NOTA: Note que na sintaxe @Query o 'user' está em letra menúscula pois faz referência
 	 * a tabela do banco de dados.
-	 * * 
 	 * */
 	
 	/*@Query: A query deve obdeser a ordem implicita dos paramétros com segue abaixo:
