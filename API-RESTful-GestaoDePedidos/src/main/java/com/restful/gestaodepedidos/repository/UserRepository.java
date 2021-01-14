@@ -36,5 +36,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 	public int updateRole(Long id, Role role);		  // no atributo role da classe User. Veja essa classe para entender.
 	
 	public Optional<User> findByEmail(String email);
+	
+	//Teste
 
 }
