@@ -60,7 +60,7 @@ public class Request implements Serializable{
 	private User owner;
 	
 	/*Quando é @OneToMany dentro da Tabela do bancode dados 'request' não existirá
-	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
+	 * uma coluna com o nome desse atribuito 'request'. Esse é apenas uma referência
 	 * ao @ManyToOne
 	 * */
 	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição durante  serialização para Json

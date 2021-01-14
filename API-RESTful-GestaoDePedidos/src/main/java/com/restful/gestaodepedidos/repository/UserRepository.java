@@ -3,6 +3,7 @@ package com.restful.gestaodepedidos.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import com.restful.gestaodepedidos.domain.User;
 import com.restful.gestaodepedidos.domain.enums.Role;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User>{
 	/*@Quary: essa é uma sintaxe chamada Jpql. A letra 'u' faz parte 
 	 * da sintaxe. A sintaxe 'email = ?1' e [password = ?2]faz referencia a uma consulta 
 	 * em ordem sequencial do paramentro login(String email, String password) sendo 'String email'

@@ -40,8 +40,10 @@ public class User implements Serializable{
 	@Column(length = 100, nullable = false, unique = true)
 	private String email;
 	
-	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição(ou serialização) Json
-	@Setter(onMethod = @__(@JsonProperty))//Ignora a resposta(ou deserialização) Json
+	//@JsonIgnore -> Alternativa para versão Java8+
+	@Getter(onMethod = @__(@JsonIgnore))//Ignora esse atributo durante serialização de uma requisição. Mas
+	//@Setter(onMethod_=@JsonProperty) -> Alternativa para versão Java8+
+	@Setter(onMethod = @__(@JsonProperty))//durante a desserialização não é ignorado com o @jsonProperty
 	@Column(nullable = false)
 	private String password;
 	

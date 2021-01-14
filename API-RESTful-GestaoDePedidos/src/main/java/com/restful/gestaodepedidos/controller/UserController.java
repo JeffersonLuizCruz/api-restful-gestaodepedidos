@@ -2,6 +2,7 @@ package com.restful.gestaodepedidos.controller;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -94,11 +95,9 @@ public class UserController {
 	public ResponseEntity<PageModel<User>> listAll(
 			/*defaultValue = "0" - caso o cliente não informe a paginação será paginado por padrão a página 0.
 			 * Enquanto defaultValue = "10" - faz a paginação do tamanho 10. Isso evita o erro 400 Not found.
-			 * */ 
-			@RequestParam(value = "page", defaultValue = "0") int page, 
-			@RequestParam(value = "size", defaultValue = "10") int size){
-		
-		PageRequestModel pr = new PageRequestModel(page, size);
+			 * */  
+		@RequestParam Map<String, String> params){
+		PageRequestModel pr = new PageRequestModel(params);
 		PageModel<User> pm = userService.listAllByOnLazyModel(pr);
 		
 		return ResponseEntity.ok(pm);
@@ -140,10 +139,9 @@ public class UserController {
 	@GetMapping("/{id}/requests")
 	public ResponseEntity<PageModel<Request>> listAllByRequestId(
 			@PathVariable Long id,
-			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "size", defaultValue = "10") int size) {
+			@RequestParam Map<String, String> params) {
 
-		PageRequestModel pr = new PageRequestModel(page, size); // cria paginação
+		PageRequestModel pr = new PageRequestModel(params); // cria paginação
 		PageModel<Request> pm = requestService.listAllByOwnerIdOnLazyModel(id, pr); //inseri paginação
 
 		return ResponseEntity.ok(pm);

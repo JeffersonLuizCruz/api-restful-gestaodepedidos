@@ -1,5 +1,6 @@
 package com.restful.gestaodepedidos.controller;
 
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -73,11 +74,9 @@ public class RequestController {
 //	}
 	
 	@GetMapping  //Esse método é uma evolução do listAll()
-	public ResponseEntity<PageModel<Request>> listAllByOnLazyModel(
-			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "size", defaultValue = "10") int size){
+	public ResponseEntity<PageModel<Request>> listAllByOnLazyModel(@RequestParam Map<String, String> params){
 		
-		PageRequestModel pr = new PageRequestModel(page, size);
+		PageRequestModel pr = new PageRequestModel(params);
 		
 		PageModel<Request> pm = requestService.listAllByOnLazyModel(pr);
 		
@@ -95,12 +94,9 @@ public class RequestController {
 //	}
 	//http:localhost:8080/requests/1/request-stages
 	@GetMapping("/{id}/request-stages")
-	public ResponseEntity<PageModel<RequestStage>> listAllStageById(
-			@PathVariable Long id,
-			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "size", defaultValue = "10") int size){
+	public ResponseEntity<PageModel<RequestStage>> listAllStageById(@PathVariable Long id, @RequestParam Map<String, String> params){
 		
-		PageRequestModel pr = new PageRequestModel(page, size);
+		PageRequestModel pr = new PageRequestModel(params);
 		PageModel<RequestStage> pm = stageService.listAllByRequestIdOnLazyModel(id, pr);
 		
 		return ResponseEntity.ok(pm);
