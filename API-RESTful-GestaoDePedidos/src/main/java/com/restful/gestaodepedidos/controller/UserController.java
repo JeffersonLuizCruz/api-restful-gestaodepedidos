@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -62,6 +64,7 @@ public class UserController {
 		}
 	
 	@PreAuthorize("@accessManager.isOwner(#id)")
+	@CacheEvict(value = "users", allEntries = true)
 	@PutMapping("/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userDto){
 		User user = userDto.transformToUser();
@@ -72,6 +75,7 @@ public class UserController {
 		return ResponseEntity.ok(updateUser);
 	}
 	
+	@Cacheable("users")
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getById(@PathVariable Long id){
 		User user = userService.getById(id);
@@ -79,7 +83,8 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 	
-	@GetMapping 
+	@Cacheable("users")
+	@GetMapping
 	public ResponseEntity<PageModel<User>> listAll(
 		@RequestParam Map<String, String> params){
 		PageRequestModel pr = new PageRequestModel(params);
@@ -109,6 +114,7 @@ public class UserController {
 	}
 	
 	//http:localhost:8080/users/1/requests 
+	@Cacheable("users")
 	@GetMapping("/{id}/requests")
 	public ResponseEntity<PageModel<Request>> listAllByRequestId(
 			@PathVariable Long id,
