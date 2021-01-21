@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -46,6 +48,7 @@ public class RequestController {
 	}
 	
 	@PreAuthorize("accessManager.isOwnerRequest(#id)")
+	@CacheEvict(value = "requests", allEntries = true)
 	@PutMapping("/{id}")
 	public ResponseEntity<Request> update(@PathVariable Long id, @RequestBody @Valid RequestUpdateDto requestDto){
 		
@@ -57,6 +60,7 @@ public class RequestController {
 		return ResponseEntity.ok(updateRequest);
 	}
 	
+	@Cacheable(value = "requests")
 	@GetMapping("/{id}")
 	public ResponseEntity<Request> getById(@PathVariable Long id){
 		
@@ -65,15 +69,8 @@ public class RequestController {
 		return ResponseEntity.ok(request.get());
 	}
 	
-//	@GetMapping
-//	public ResponseEntity<List<Request>> listAll(){
-//		
-//		List<Request> requests = requestService.listAll();
-//		
-//		return ResponseEntity.ok(requests);
-//	}
-	
-	@GetMapping  //Esse método é uma evolução do listAll()
+	@Cacheable(value = "requests")
+	@GetMapping 
 	public ResponseEntity<PageModel<Request>> listAllByOnLazyModel(@RequestParam Map<String, String> params){
 		
 		PageRequestModel pr = new PageRequestModel(params);
@@ -83,16 +80,8 @@ public class RequestController {
 		return ResponseEntity.ok(pm);
 	}
 	
-		//http:localhost:8080/requests/1/request-stages
-//	@GetMapping("/{id}/request-stages")
-//	public ResponseEntity<List<RequestStage>> listAllStageById(@PathVariable Long id){
-//		
-//		List<RequestStage> stages = stageService.listAllByRequestId(id);
-//		
-//		return ResponseEntity.ok(stages);
-//	
-//	}
 	//http:localhost:8080/requests/1/request-stages
+	@Cacheable(value = "requests")
 	@GetMapping("/{id}/request-stages")
 	public ResponseEntity<PageModel<RequestStage>> listAllStageById(@PathVariable Long id, @RequestParam Map<String, String> params){
 		

@@ -22,7 +22,6 @@ public class RequestService {
 	@Autowired private RequestRepository requestRepository;
 	
 	public Request save(Request request) {
-		
 		request.setState(RequestState.OPEN);
 		request.setCreationDate(new Date());
 		
@@ -30,49 +29,32 @@ public class RequestService {
 		return saveRequest;
 	}
 	
-	public Request update(Request update) {
-		
+	public Request update(Request update) {		
 		Request updateRequest = requestRepository.save(update);
 		return updateRequest;
 	}
 	
 	public Request getById(Long id) {
-		
 		Optional<Request> result = requestRepository.findById(id);
 		return result.orElseThrow(() -> new NotFoundException("Não existe Request com id = " + id));
 		}
 	
-//	public List<Request> listAll(){
-//		
-//		List<Request> listRequest = requestRepository.findAll();
-//		return listRequest;
-//	}
-	
-public PageModel<Request> listAllByOnLazyModel(PageRequestModel pr){
-		
-		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); // cria a paginação
-		Page<Request> page = requestRepository.findAll(pageable); // inseri os dados numa pagina.
-		
-		PageModel<Request> pm = new PageModel<>(
-				(int)page.getTotalElements(),
-				page.getSize(), page.getTotalPages(),
-				page.getContent());
-		
-		return pm;
-	}
-	
-//	//http://localhost:8080/users/1/requests-list /// Método Opcional
-//	public List<Request> listAllByOwnerId(Long ownerId){
-//		
-//		List<Request> listOwner = requestRepository.findAllByOwnerId(ownerId);
-//		return listOwner;
-//	}
+		public PageModel<Request> listAllByOnLazyModel(PageRequestModel pr) {
+			Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); 
+			Page<Request> page = requestRepository.findAll(pageable);
+
+			PageModel<Request> pm = new PageModel<>(
+										(int) page.getTotalElements(),
+										page.getSize(),
+										page.getTotalPages(),
+										page.getContent());
+			return pm;
+		}
 	
 	//http://localhost:8080/users/1/requests
 	public PageModel<Request> listAllByOwnerIdOnLazyModel(Long ownerId, PageRequestModel pr){
-		
-		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize()); // cria paginação
-		Page<Request> page = requestRepository.findAllByOwnerId(ownerId, pageable);// inserir a paginação
+		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
+		Page<Request> page = requestRepository.findAllByOwnerId(ownerId, pageable);
 		
 		PageModel<Request> pm = new PageModel<>(
 				(int)page.getTotalElements(),
