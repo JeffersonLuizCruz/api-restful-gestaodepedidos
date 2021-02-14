@@ -42,8 +42,11 @@ import com.restful.gestaodepedidos.security.JwtManager;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.UserService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping(value = "users")
+@Api("Autorização de Acesso de Usuários")
 public class UserController {
 	
 	@Autowired private UserService userService;

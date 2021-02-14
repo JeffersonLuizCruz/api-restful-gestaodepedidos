@@ -30,8 +30,11 @@ import com.restful.gestaodepedidos.security.AccessManager;
 import com.restful.gestaodepedidos.service.RequestService;
 import com.restful.gestaodepedidos.service.RequestStageService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping(value = "requests")
+@Api("Controle de cadastro e consulta de pedidos")
 public class RequestController {
 	
 	@Autowired private RequestService requestService;

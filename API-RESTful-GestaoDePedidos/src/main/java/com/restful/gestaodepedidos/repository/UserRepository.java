@@ -15,12 +15,12 @@ import com.restful.gestaodepedidos.domain.enums.Role;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User>{
 	
-	@Query("SELECT u FROM user u WHERE email = ?1 AND password = ?2")
+	@Query("SELECT u FROM user_access u WHERE email = ?1 AND password = ?2")
 	public Optional<User> login(String email, String password);
 	
 	@Transactional(readOnly = false)
 	@Modifying
-	@Query("UPDATE user SET role = ?2 WHERE id = ?1") 
+	@Query("UPDATE user_access SET role = ?2 WHERE id = ?1") 
 	public int updateRole(Long id, Role role);
 	
 	public Optional<User> findByEmail(String email);

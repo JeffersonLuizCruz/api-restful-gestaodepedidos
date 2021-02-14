@@ -17,8 +17,11 @@ import com.restful.gestaodepedidos.domain.RequestStage;
 import com.restful.gestaodepedidos.dto.RequestStageDto;
 import com.restful.gestaodepedidos.service.RequestStageService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping(value = "request-stages")
+@Api("Status de abertura de um pedido(OPEN, IN_PROGRESS, CLOSED)")
 public class RequestStageController {
 	
 	@Autowired private RequestStageService stageService;
