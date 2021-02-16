@@ -211,7 +211,7 @@ spring.jackson.default-property-inclusion= non-null
 }
 ```
 ### Rota[GET]
-- Listar Pedido paginada .
+- Listar de Pedido paginada .
 [GET] http://localhost:8080/requests/
 
 #### Response:
@@ -250,6 +250,46 @@ spring.jackson.default-property-inclusion= non-null
     ]
 }
 ...
+```
+
+### Rota[GET]
+- Listar de Pedido paginada com seu respectivo Estágio(status = OPEN | IN_PROGRESS | CLOSED).
+[GET] http://localhost:8080/requests/1/request-stages
+
+#### Response:
+```
+{
+    "totalElements": 1,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "description": "Pedido submetido para anÃ¡lise",
+            "realizationDate": "2021-02-16T17:19:35.869+00:00",
+            "state": "IN_PROGRESS",
+            "request": {
+                "id": 1,
+                "subject": "Pedido de Notebook",
+                "description": "Notebook Acer de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+                "creationDate": "2021-02-16T15:23:28.464+00:00",
+                "state": "IN_PROGRESS",
+                "owner": {
+                    "id": 1,
+                    "name": "hugo",
+                    "email": "hugo@gmail.com",
+                    "role": "ADMINISTRATOR"
+                }
+            },
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        }
+    ]
+}
 ```
 
 </details>
