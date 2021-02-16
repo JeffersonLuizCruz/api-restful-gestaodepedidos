@@ -153,3 +153,103 @@ spring.jackson.default-property-inclusion= non-null
 ```
 
 </details>
+<details>
+<summary><strong> Endpoint Pedido(/requests/**)</strong></summary>
+    
+### Rota[POST]
+- Cadastro de Pedido.
+[POST] http://localhost:8080/requests
+
+#### Body:
+```
+{
+    "subject": "Pedido de Notebook",
+    "description": "Notebook Acer de configuração avançada para programação Android",
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+```
+### Rota[PUT]
+- Editar Pedido.
+[POST] http://localhost:8080/requests/1
+
+#### Body:
+```
+{
+    "subject": "Pedido de Notebook",
+    "description": "Notebook Dell de configuração avançada para programação Android", // Editado marca de notebook
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+```
+### Rota[GET]
+- Listar Pedido por id .
+[GET] http://localhost:8080/requests/1
+
+#### Response:
+```
+{
+    "id": 1,
+    "subject": "Pedido de Notebook",
+    "description": "Notebook Dell de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+    "creationDate": "2021-02-16T15:23:28.464+00:00",
+    "state": "OPEN",
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+```
+### Rota[GET]
+- Listar Pedido paginada .
+[GET] http://localhost:8080/requests/
+
+#### Response:
+```
+{
+    "totalElements": 2,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "subject": "Pedido de Notebook",
+            "description": "Notebook Dell de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+            "creationDate": "2021-02-16T15:23:28.464+00:00",
+            "state": "OPEN",
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        },
+        {
+            "id": 2,
+            "subject": "Pedido de compra de Software IDE",
+            "description": "O software IDE para desenvolvimento para compra é o Intellij",
+            "creationDate": "2021-02-16T15:41:24.807+00:00",
+            "state": "OPEN",
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        }
+    ]
+}
+...
+```
+
+</details>
