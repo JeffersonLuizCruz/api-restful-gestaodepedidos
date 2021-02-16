@@ -28,5 +28,4 @@ spring.jpa.properties.hibernate.format_sql=true
 spring.jackson.default-property-inclusion= non-null
 ```
 ## Diagrama de Classe
-![](/src/main/resources/tamplate/diagrama-class.png)
-<img src=”/src/main/resources/tamplate/diagrama-class.png”>
+![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
