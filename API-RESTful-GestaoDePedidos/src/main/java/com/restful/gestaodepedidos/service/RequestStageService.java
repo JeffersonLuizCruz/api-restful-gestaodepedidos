@@ -1,6 +1,6 @@
 package com.restful.gestaodepedidos.service;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +25,7 @@ public class RequestStageService {
 	
 	
 	public RequestStage save(RequestStage stage) {
-		stage.setRealizationDate(new Date());
+		stage.setRealizationDate(Instant.now());
 	
 		RequestStage saveStage = stageRepository.save(stage);
 		Long requestId = stage.getRequest().getId();

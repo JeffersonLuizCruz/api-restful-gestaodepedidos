@@ -2,7 +2,7 @@ package com.restful.gestaodepedidos.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +31,7 @@ public class RequestRepositoryTest {
 				null,
 				"Notebook Dell",
 				"Novo Notebook",
-				new Date(),
+				Instant.now(),
 				RequestState.OPEN,
 				owner,
 				null);
@@ -50,7 +50,7 @@ public class RequestRepositoryTest {
 				null,
 				"Notebook Dell",
 				"Novo Notebook 16Ram 500HD i5",
-				new Date(), //O atributo data foi defino como na Classe Request como 'updatable = false'
+				Instant.now(), //O atributo data foi defino como na Classe Request como 'updatable = false'
 				RequestState.IN_PROGRESS,
 				owner,
 				null);

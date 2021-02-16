@@ -1,8 +1,8 @@
 package com.restful.gestaodepedidos.domain;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
@@ -44,24 +42,29 @@ public class Request implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;
 	
-	@Column(name = "creation_date", nullable = false, updatable = false) // Essa data não pode ser mudada.Será fixa com uso do updatable=false
-	@Temporal(TemporalType.TIMESTAMP) //Organiza a data em dd/mm/YYYY
-	private Date creationDate;
+	/**
+	 * @Column(updatable = false) -> É uma data fixa. Não sofre alteração.
+	 * */
+	@Column(name = "creation_date", nullable = false, updatable = false) 
+	private Instant creationDate;
 	
 	@Column(length = 75, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private RequestState state;
 	
-	/*Quando existe uma notação @ManyToOne esse atributo fará parte da coluna da base de dados
-	 * Como uma chave-estrangeira
-	 * */
 	@ManyToOne
 	@JoinColumn(name = "owner_id", nullable = false)
 	private User owner;
 	
-	/*Quando é @OneToMany dentro da Tabela do bancode dados 'request' não existirá
-	 * uma coluna com o nome desse atribuito 'request'. Esse é apenas uma referência
-	 * ao @ManyToOne
+	/**
+	 * Nota: Notação depreciada
+	 * @Getter(onMethod = @__(@JsonIgnore)) -> Ignora o atributo durante a serialização.
+	 * @Setter(onMethod = @__(@JsonProperty) -> Deserializa o atributo json para objeto java. 
+	 * 
+	 * Substituída:
+	 * 
+	 *  @Getter(onMethod_=@JsonIgnore)
+	 *  @Setter(onMethod_=@JsonProperty)
 	 * */
 	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição durante  serialização para Json
 	@OneToMany(mappedBy = "request")

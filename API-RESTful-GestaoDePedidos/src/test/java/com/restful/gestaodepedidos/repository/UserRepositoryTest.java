@@ -17,26 +17,21 @@ import com.restful.gestaodepedidos.domain.enums.Role;
 public class UserRepositoryTest {
 	
 	@Autowired UserRepository repository;
-	
-	/*O Método saveTest() é o método principal. Todos os outros métodos precisam dele
-	 * para serem execultado os testes.
-	 * */
-	
+
 	@Test
 	public void saveTest() {
-		
 		User user = new User(
 				null,
-				"luiz",
-				"luiz@gmail.com",
-				"12345678",
+				"Hugo",
+				"hugo@gmail.com",
+				"123456789",
 				Role.ADMINISTRATOR,
 				null, //Pedido
 				null); //state
 		
 		User createUser = repository.save(user);
 		
-		assertThat(createUser.getId()).isEqualTo(null);
+		assertThat(createUser.getId()).isEqualTo(1L);
 	}
 	
 	@Test

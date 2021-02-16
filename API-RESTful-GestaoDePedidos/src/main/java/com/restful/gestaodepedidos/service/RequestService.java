@@ -1,6 +1,6 @@
 package com.restful.gestaodepedidos.service;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class RequestService {
 	
 	public Request save(Request request) {
 		request.setState(RequestState.OPEN);
-		request.setCreationDate(new Date());
+		request.setCreationDate(Instant.now());
 		
 		Request saveRequest = requestRepository.save(request);
 		return saveRequest;

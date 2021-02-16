@@ -27,7 +27,6 @@ import lombok.Setter;
 @Getter @Setter
 @Entity(name = "user_access")
 public class User implements Serializable{
-	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -40,34 +39,30 @@ public class User implements Serializable{
 	@Column(length = 100, nullable = false, unique = true)
 	private String email;
 	
-	//@JsonIgnore -> Alternativa para versão Java8+
-	@Getter(onMethod = @__(@JsonIgnore))//Ignora esse atributo durante serialização de uma requisição. Mas
-	//@Setter(onMethod_=@JsonProperty) -> Alternativa para versão Java8+
-	@Setter(onMethod = @__(@JsonProperty))//durante a desserialização não é ignorado com o @jsonProperty
+	/**
+	 * Nota: Notação depreciada
+	 * @Getter(onMethod = @__(@JsonIgnore)) -> Ignora o atributo durante a serialização.
+	 * @Setter(onMethod = @__(@JsonProperty) -> Deserializa o atributo json para objeto java. 
+	 * 
+	 * Substituída:
+	 * 
+	 *  @Getter(onMethod_=@JsonIgnore)
+	 *  @Setter(onMethod_=@JsonProperty)
+	 * */
+	@Setter(onMethod_=@JsonProperty)
+	@Getter(onMethod_=@JsonIgnore)
 	@Column(nullable = false)
 	private String password;
 	
-	/*A probiedade updatable decidi se a coluna fará parte da instrução de atualização. Com o valor 'false'
-	 * significa que o Hibernate ignora a coluna ao enviar atualizações para o banco de dados.
-	 * 
-	 * */
 	@Column(nullable = false, updatable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
-	/*OBS: Quando é @OneToMany dentro da Tabela do bancode dados 'user' não existirá
-	 * uma coluna com o nome desse atribuito 'request'. Esse é apenas uma referência
-	 * ao @ManytoOne
-	 * */
-	@Getter(onMethod = @__(@JsonIgnore)) //Ignora a requisição durante  serialização para Json
+
+	@Getter(onMethod_=@JsonIgnore)
 	@OneToMany(mappedBy = "owner") 
 	private List<Request> request = new ArrayList<>();
 	
-	/*Quando é @OneToMany dentro da Tabela do bancode dados 'user' não existirá
-	 * uma coluna com o nome desse atribuito 'stages'. Esse é apenas uma referência
-	 * ao @ManyToOne
-	 * */
-	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição durante  serialização para Json
+	@Getter(onMethod_=@JsonIgnore)
 	@OneToMany(mappedBy = "owner")
 	private List<RequestStage> stages = new ArrayList<>();
 
