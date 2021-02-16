@@ -295,9 +295,9 @@ spring.jackson.default-property-inclusion= non-null
 <summary><strong> Endpoint Estágio deo Pedido(OPEN | IN_PROGRESS | CLOSED)(/request-stages/**)</strong></summary>
     
 ### Rota[POST]
+
 - O administrador do sistema irá definir o estatus do cadastro do Pedido do Cliente.
 [POST] http://localhost:8080/request-stages
-
 #### Body:
 ```
 {
