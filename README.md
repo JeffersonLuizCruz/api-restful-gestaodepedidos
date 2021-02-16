@@ -125,7 +125,7 @@ spring.jackson.default-property-inclusion= non-null
 } ...
 ```
 ### Rota[GET]
-- Lista Páginada de um Pedido de resspectivo usuário.
+- Lista Páginada de um Pedido de respectivo usuário.
 [GET] http://localhost:8080/users/1/requests
 
 #### Response:
