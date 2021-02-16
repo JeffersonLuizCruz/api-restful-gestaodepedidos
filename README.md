@@ -30,11 +30,12 @@ spring.jackson.default-property-inclusion= non-null
 ## Diagrama de Classe
 ![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
 
-## Endpoint Usuário(/users/**)
+<details>
+<summary><strong> Endpoint Usuário(/users/**)</strong></summary>
 
 ### Rota[POST]
 - Salvar Usuário.
-- [POST] http://localhost:8080/users/
+[POST] http://localhost:8080/users/
 
 #### Body:
 ```
@@ -47,7 +48,7 @@ spring.jackson.default-property-inclusion= non-null
 ```
 ### Rota[PUT]
 - Editar Usuário.
-- [PUT] http://localhost:8080/users/1
+[PUT] http://localhost:8080/users/1
 
 #### Body:
 ```
@@ -61,9 +62,9 @@ spring.jackson.default-property-inclusion= non-null
 
 ### Rota[GET]
 - Listar Usuário por id .
-- [GET] http://localhost:8080/users/1
+[GET] http://localhost:8080/users/1
 
-#### Body:
+#### Response:
 ```
 {
     "id": 1,
@@ -74,9 +75,9 @@ spring.jackson.default-property-inclusion= non-null
 ```
 ### Rota[GET]
 - Lista Páginada de Usuários
-- [GET] http://localhost:8080/users/
+[GET] http://localhost:8080/users/
 
-#### Body:
+#### Response:
 ```
 {
     "totalElements": 10,
@@ -97,3 +98,4 @@ spring.jackson.default-property-inclusion= non-null
         },
 } ...
 ```
+</details>
