@@ -5,7 +5,7 @@ Essa API foi feita para cadastrar chamados de pedidos. E cada usuário poderá a
 
 ## Dependências
 - Java 11
-- Mysql
+- Postgres
 - Spring Boot 3.2.1
 - JPA
 - Spring Security
