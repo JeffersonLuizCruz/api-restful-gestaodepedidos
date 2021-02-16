@@ -60,7 +60,7 @@ spring.jackson.default-property-inclusion= non-null
     "password": "123456789"
 }
 ```
-#### Reponse Token JWT:
+### Reponse Token JWT:
 ```
 {
     "token": "eyJhbGciOiJIUzUxMiJ9.
@@ -291,5 +291,39 @@ spring.jackson.default-property-inclusion= non-null
     ]
 }
 ```
+<details>
+<summary><strong> Endpoint Estágio deo Pedido(OPEN | IN_PROGRESS | CLOSED)(/request-stages/**)</strong></summary>
+    
+### Rota[POST]
+- O administrador do sistema irá definir o estatus do cadastro do Pedido do Cliente.
+[POST] http://localhost:8080/request-stages
 
+#### Body:
+```
+{
+    "id": 1,
+    "description": "Pedido submetido para anÃ¡lise",
+    "realizationDate": "2021-02-16T17:19:35.869+00:00",
+    "state": "IN_PROGRESS",
+    "request": {
+        "id": 1,
+        "subject": "Pedido de Notebook",
+        "description": "Notebook Acer de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+        "creationDate": "2021-02-16T15:23:28.464+00:00",
+        "state": "IN_PROGRESS",
+        "owner": {
+            "id": 1,
+            "name": "Hugo",
+            "email": "hugo@gmail.com",
+            "role": "ADMINISTRATOR"
+        }
+    },
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+    
 </details>
