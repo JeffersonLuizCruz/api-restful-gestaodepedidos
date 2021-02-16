@@ -30,6 +30,8 @@ spring.jackson.default-property-inclusion= non-null
 ## Diagrama de Classe
 ![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
 
+## Recursos da cadama User
+
 <details>
 <summary><strong> Endpoint Usuário(/users/**)</strong></summary>
 
