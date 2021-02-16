@@ -291,6 +291,7 @@ spring.jackson.default-property-inclusion= non-null
     ]
 }
 ```
+</details>
 <details>
 <summary><strong> Endpoint Estágio deo Pedido(OPEN | IN_PROGRESS | CLOSED)(/request-stages/**)</strong></summary>
     
