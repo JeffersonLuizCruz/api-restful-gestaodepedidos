@@ -6,8 +6,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -51,7 +49,7 @@ public class RequestController {
 	}
 	
 	@PreAuthorize("accessManager.isOwnerRequest(#id)")
-	@CacheEvict(value = "requests", allEntries = true)
+	//@CacheEvict(value = "requests", allEntries = true)
 	@PutMapping("/{id}")
 	public ResponseEntity<Request> update(@PathVariable Long id, @RequestBody @Valid RequestUpdateDto requestDto){
 		
@@ -63,7 +61,7 @@ public class RequestController {
 		return ResponseEntity.ok(updateRequest);
 	}
 	
-	@Cacheable(value = "requests")
+	//@Cacheable(value = "requests")
 	@GetMapping("/{id}")
 	public ResponseEntity<Request> getById(@PathVariable Long id){
 		
@@ -72,7 +70,7 @@ public class RequestController {
 		return ResponseEntity.ok(request.get());
 	}
 	
-	@Cacheable(value = "requests")
+	//@Cacheable(value = "requests")
 	@GetMapping 
 	public ResponseEntity<PageModel<Request>> listAllByOnLazyModel(@RequestParam Map<String, String> params){
 		
@@ -84,7 +82,7 @@ public class RequestController {
 	}
 	
 	//http:localhost:8080/requests/1/request-stages
-	@Cacheable(value = "requests")
+	//@Cacheable(value = "requests")
 	@GetMapping("/{id}/request-stages")
 	public ResponseEntity<PageModel<RequestStage>> listAllStageById(@PathVariable Long id, @RequestParam Map<String, String> params){
 		

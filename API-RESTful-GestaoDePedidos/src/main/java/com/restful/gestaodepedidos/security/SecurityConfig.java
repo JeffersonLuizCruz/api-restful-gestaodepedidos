@@ -1,7 +1,6 @@
 package com.restful.gestaodepedidos.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -13,9 +12,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.restful.gestaodepedidos.service.UserService;
+
  
 /**
  * @EnableGlobalMethodSecurity: Essa notação ativa as autorizações de acesso. Ela trabalha em conjunto com
@@ -38,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 							 auth
 							 .userDetailsService(userService)
-							 .passwordEncoder(passwordEncoder);
+							 .passwordEncoder(passwordEncoder);				 
 	}
 	
 	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
@@ -56,11 +57,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-				   .authorizeRequests()
+		http.csrf().disable().authorizeRequests()
+				   .antMatchers(HttpMethod.GET, "/").permitAll()
+				   .antMatchers(HttpMethod.GET, "/v2/api-docs").permitAll()
+				   .antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
+				   .antMatchers(HttpMethod.GET, "/webjars/**").permitAll()
+				   .antMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
+				   .antMatchers(HttpMethod.POST, "/users/login").permitAll()
 				   .anyRequest().authenticated();
+
 				   								 
 		http.addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
+	
 
 }

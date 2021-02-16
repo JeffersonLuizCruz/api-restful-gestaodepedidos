@@ -45,7 +45,7 @@ import com.restful.gestaodepedidos.service.UserService;
 import io.swagger.annotations.Api;
 
 @RestController
-@RequestMapping(value = "users")
+@RequestMapping("users")
 @Api("Autorização de Acesso de Usuários")
 public class UserController {
 	
@@ -68,7 +68,7 @@ public class UserController {
 	
 	@PreAuthorize("@accessManager.isOwner(#id)")
 	@CacheEvict(value = "users", allEntries = true)
-	@PutMapping("/{id}")
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userDto){
 		User user = userDto.transformToUser();
 		
@@ -79,7 +79,7 @@ public class UserController {
 	}
 	
 	@Cacheable("users")
-	@GetMapping("/{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<User> getById(@PathVariable Long id){
 		User user = userService.getById(id);
 		
@@ -96,7 +96,7 @@ public class UserController {
 		return ResponseEntity.ok(pm);
 	}
 	
-	@PostMapping("/login")
+	@PostMapping(value = "/login")
 	public ResponseEntity<UserLoginResponseDto> login(@Valid @RequestBody UserLoginDto user){
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
 
@@ -117,8 +117,8 @@ public class UserController {
 	}
 	
 	//http:localhost:8080/users/1/requests 
-	@Cacheable("users")
-	@GetMapping("/{id}/requests")
+	//@Cacheable("users")
+	@GetMapping(value = "/{id}/requests")
 	public ResponseEntity<PageModel<Request>> listAllByRequestId(
 			@PathVariable Long id,
 			@RequestParam Map<String, String> params) {
@@ -130,7 +130,7 @@ public class UserController {
 	}
 	
 	@Secured({"ROLE_ADMINISTRATOR"})
-	@PatchMapping("/role/{id}")
+	@PatchMapping(value = "/role/{id}")
 	public ResponseEntity<?> updateRole(@PathVariable Long id , @Valid @RequestBody UpdateRoleDto userDto){
 		User user = new User();
 		user.setId(id);

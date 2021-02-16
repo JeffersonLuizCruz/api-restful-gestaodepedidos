@@ -27,9 +27,7 @@ import com.restful.gestaodepedidos.util.HashUtil;
 public class UserService implements UserDetailsService{
 	
 	@Autowired private UserRepository userRepository;
-		
-	
-	
+
 	public User save(User user) {
 		String hash = HashUtil.getSecureHash(user.getPassword()); 
 		user.setPassword(hash); 

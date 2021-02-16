@@ -27,8 +27,8 @@ public class UserRepositoryTest {
 		
 		User user = new User(
 				null,
-				"Jefferson",
-				"jefferson@gmail.com",
+				"luiz",
+				"luiz@gmail.com",
 				"12345678",
 				Role.ADMINISTRATOR,
 				null, //Pedido
@@ -36,24 +36,24 @@ public class UserRepositoryTest {
 		
 		User createUser = repository.save(user);
 		
-		assertThat(createUser.getId()).isEqualTo(1L);
+		assertThat(createUser.getId()).isEqualTo(null);
 	}
 	
 	@Test
 	public void updateTest() {
 		
 		User user = new User(
-				9L,
-				"Jefferson",
-				"jefferson@gmail.com",
-				"12345678",
+				2L,
+				"jeff",
+				"jeff@gmail.com",
+				"123456789",
 				Role.SIMPLE,
 				null, //Pedido
 				null); //state
 		
 		User updateUser = repository.save(user);
 		
-		assertThat(updateUser.getEmail()).isEqualTo("jefferson@gmail.com");
+		assertThat(updateUser.getEmail()).isEqualTo("jeff@gmail.com");
 	}
 	
 	@Test
@@ -76,12 +76,13 @@ public class UserRepositoryTest {
 	@Test
 	public void loginTest() {
 		
-		Optional<User> result = repository.login("hugo@gmail.com", "2147483647"); 
+		Optional<User> result = repository.login("hugo@gmail.com", "123456789"); 
 		//Buscar um usuário por meio do email e senha
 		User loggerUser = result.get(); //Pegar usuário listado por meio de uma id .
 		
 		assertThat(loggerUser.getId()).isEqualTo(1L);
 	}
+	
 	@Test
 	public void updateRoleTest() {
 		
