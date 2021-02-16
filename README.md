@@ -29,3 +29,71 @@ spring.jackson.default-property-inclusion= non-null
 ```
 ## Diagrama de Classe
 ![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
+
+## Endpoint Usuário(/users/**)
+
+### Rota[POST]
+- Salvar Usuário.
+- [POST] http://localhost:8080/users/
+
+#### Body:
+```
+{
+    "name": "Hugo",
+    "email": "hugo@gmail.com",
+    "password": "123456789",
+    "role": "SIMPLE"
+}
+```
+### Rota[PUT]
+- Editar Usuário.
+- [PUT] http://localhost:8080/users/1
+
+#### Body:
+```
+{
+    "name": "Hugo",
+    "email": "hugo@gmail.com",
+    "password": "1234hugo", //Edite Password
+    "role": "ADMINISTRATOR"
+}
+```
+
+### Rota[GET]
+- Listar Usuário por id .
+- [GET] http://localhost:8080/users/1
+
+#### Body:
+```
+{
+    "id": 1,
+    "name": "Hugo",
+    "email": "hugo@gmail.com",
+    "role": "ADMINISTRATOR"
+}
+```
+### Rota[GET]
+- Lista Páginada de Usuários
+- [GET] http://localhost:8080/users/
+
+#### Body:
+```
+{
+    "totalElements": 10,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "name": "hugo",
+            "email": "hugo@gmail.com",
+            "role": "ADMINISTRATOR"
+        },
+        {
+            "id": 2,
+            "name": "jeff",
+            "email": "jeff@gmail.com",
+            "role": "SIMPLE"
+        },
+} ...
+```
