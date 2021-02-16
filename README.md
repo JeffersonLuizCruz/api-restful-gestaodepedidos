@@ -5,7 +5,7 @@ Essa API foi feita para cadastrar chamados de pedidos. E cada usuário poderá a
 
 ## Dependências
 - Java 11
-- Mysql
+- Postgres
 - Spring Boot 3.2.1
 - JPA
 - Spring Security
@@ -27,3 +27,305 @@ spring.jpa.properties.hibernate.format_sql=true
 #Valores nulos(null) serão ignorados na resposta json.
 spring.jackson.default-property-inclusion= non-null
 ```
+## Diagrama de Classe
+![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
+
+## Recursos da cadama User
+
+<details>
+<summary><strong> Endpoint Usuário(/users/**)</strong></summary>
+
+### Rota[POST]
+- Salvar Usuário.
+[POST] http://localhost:8080/users/
+
+#### Body:
+```
+{
+    "name": "Hugo",
+    "email": "hugo@gmail.com",
+    "password": "123456789",
+    "role": "ADMINISTRATOR"
+}
+```
+
+### Rota[POST]
+- Login e Senha.
+[POST] http://localhost:8080/users/login
+
+#### Body:
+```
+{
+    "email": "hugo@gmail.com",
+    "password": "123456789"
+}
+```
+### Reponse Token JWT:
+```
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.
+    eyJzdWIiOiJodWdvQGdtYWlsLmNvbSIsImV4cCI6MTYxMzkxODcxMCwicm9sZSI6WyJST0xFX0FETUlOSVNUUkFUT1IiXX0.
+    hAFvi5vIQq_SN6_hb4GBx2bvKWCZrV5hxpc9R6en7EenoFlH35UU3S0bim0kfLXKluRwR4y3lwM4LKGrovAcLA",
+    
+    "expire": 1613918710023,
+    "tokenProvider": "Dearer"
+}
+```
+
+### Rota[PUT]
+- Editar Usuário.
+[PUT] http://localhost:8080/users/1
+
+#### Body:
+```
+{
+    "name": "Hugo",
+    "email": "hugo@gmail.com",
+    "password": "1234hugo", //Edite Password
+    "role": "ADMINISTRATOR"
+}
+```
+
+### Rota[GET]
+- Listar Usuário por id .
+[GET] http://localhost:8080/users/1
+
+#### Response:
+```
+{
+    "id": 1,
+    "name": "Hugo",
+    "email": "hugo@gmail.com",
+    "role": "ADMINISTRATOR"
+}
+```
+### Rota[GET]
+- Lista Páginada de Usuários
+[GET] http://localhost:8080/users/
+
+#### Response:
+```
+{
+    "totalElements": 10,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "name": "hugo",
+            "email": "hugo@gmail.com",
+            "role": "ADMINISTRATOR"
+        },
+        {
+            "id": 2,
+            "name": "jeff",
+            "email": "jeff@gmail.com",
+            "role": "SIMPLE"
+        },
+} ...
+```
+### Rota[GET]
+- Lista Páginada de um Pedido de respectivo usuário.
+[GET] http://localhost:8080/users/1/requests
+
+#### Response:
+```
+{
+    "totalElements": 1,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "subject": "Pedido de Notebook",
+            "description": "Notebook Acer de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+            "creationDate": "2021-02-16T15:23:28.464+00:00",
+            "state": "OPEN",
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        }
+    ]
+}
+```
+
+</details>
+<details>
+<summary><strong> Endpoint Pedido(/requests/**)</strong></summary>
+    
+### Rota[POST]
+- Cadastro de Pedido.
+[POST] http://localhost:8080/requests
+
+#### Body:
+```
+{
+    "subject": "Pedido de Notebook",
+    "description": "Notebook Acer de configuração avançada para programação Android",
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+```
+### Rota[PUT]
+- Editar Pedido.
+[POST] http://localhost:8080/requests/1
+
+#### Body:
+```
+{
+    "subject": "Pedido de Notebook",
+    "description": "Notebook Dell de configuração avançada para programação Android", // Editado marca de notebook
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+```
+### Rota[GET]
+- Listar Pedido por id .
+[GET] http://localhost:8080/requests/1
+
+#### Response:
+```
+{
+    "id": 1,
+    "subject": "Pedido de Notebook",
+    "description": "Notebook Dell de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+    "creationDate": "2021-02-16T15:23:28.464+00:00",
+    "state": "OPEN",
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+```
+### Rota[GET]
+- Listar de Pedido paginada .
+[GET] http://localhost:8080/requests/
+
+#### Response:
+```
+{
+    "totalElements": 2,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "subject": "Pedido de Notebook",
+            "description": "Notebook Dell de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+            "creationDate": "2021-02-16T15:23:28.464+00:00",
+            "state": "OPEN",
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        },
+        {
+            "id": 2,
+            "subject": "Pedido de compra de Software IDE",
+            "description": "O software IDE para desenvolvimento para compra é o Intellij",
+            "creationDate": "2021-02-16T15:41:24.807+00:00",
+            "state": "OPEN",
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        }
+    ]
+}
+...
+```
+
+### Rota[GET]
+- Listar de Pedido paginada com seu respectivo Estágio(status = OPEN | IN_PROGRESS | CLOSED).
+[GET] http://localhost:8080/requests/1/request-stages
+
+#### Response:
+```
+{
+    "totalElements": 1,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "description": "Pedido submetido para anÃ¡lise",
+            "realizationDate": "2021-02-16T17:19:35.869+00:00",
+            "state": "IN_PROGRESS",
+            "request": {
+                "id": 1,
+                "subject": "Pedido de Notebook",
+                "description": "Notebook Acer de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+                "creationDate": "2021-02-16T15:23:28.464+00:00",
+                "state": "IN_PROGRESS",
+                "owner": {
+                    "id": 1,
+                    "name": "hugo",
+                    "email": "hugo@gmail.com",
+                    "role": "ADMINISTRATOR"
+                }
+            },
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        }
+    ]
+}
+```
+</details>
+<details>
+<summary><strong> Endpoint Estágio deo Pedido(OPEN | IN_PROGRESS | CLOSED)(/request-stages/**)</strong></summary>
+    
+### Rota[POST]
+
+- O administrador do sistema irá definir o estatus do cadastro do Pedido do Cliente.
+[POST] http://localhost:8080/request-stages
+#### Body:
+```
+{
+    "id": 1,
+    "description": "Pedido submetido para anÃ¡lise",
+    "realizationDate": "2021-02-16T17:19:35.869+00:00",
+    "state": "IN_PROGRESS",
+    "request": {
+        "id": 1,
+        "subject": "Pedido de Notebook",
+        "description": "Notebook Acer de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+        "creationDate": "2021-02-16T15:23:28.464+00:00",
+        "state": "IN_PROGRESS",
+        "owner": {
+            "id": 1,
+            "name": "Hugo",
+            "email": "hugo@gmail.com",
+            "role": "ADMINISTRATOR"
+        }
+    },
+    "owner": {
+        "id": 1,
+        "name": "Hugo",
+        "email": "hugo@gmail.com",
+        "role": "ADMINISTRATOR"
+    }
+}
+...
+ ```   
+</details>
