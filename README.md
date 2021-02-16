@@ -60,18 +60,17 @@ spring.jackson.default-property-inclusion= non-null
     "password": "123456789"
 }
 ```
-### Reponse Token JWT:
->
+#### Reponse Token JWT:
 ```
 {
     "token": "eyJhbGciOiJIUzUxMiJ9.
     eyJzdWIiOiJodWdvQGdtYWlsLmNvbSIsImV4cCI6MTYxMzkxODcxMCwicm9sZSI6WyJST0xFX0FETUlOSVNUUkFUT1IiXX0.
     hAFvi5vIQq_SN6_hb4GBx2bvKWCZrV5hxpc9R6en7EenoFlH35UU3S0bim0kfLXKluRwR4y3lwM4LKGrovAcLA",
+    
     "expire": 1613918710023,
     "tokenProvider": "Dearer"
 }
 ```
->
 
 ### Rota[PUT]
 - Editar Usuário.
@@ -125,4 +124,32 @@ spring.jackson.default-property-inclusion= non-null
         },
 } ...
 ```
+### Rota[GET]
+- Lista Páginada de um Pedido de resspectivo usuário.
+[GET] http://localhost:8080/users/1/requests
+
+#### Response:
+```
+{
+    "totalElements": 1,
+    "pageSize": 10,
+    "totalPages": 1,
+    "elements": [
+        {
+            "id": 1,
+            "subject": "Pedido de Notebook",
+            "description": "Notebook Acer de configuraÃ§Ã£o avanÃ§ada para programaÃ§Ã£o Android",
+            "creationDate": "2021-02-16T15:23:28.464+00:00",
+            "state": "OPEN",
+            "owner": {
+                "id": 1,
+                "name": "hugo",
+                "email": "hugo@gmail.com",
+                "role": "ADMINISTRATOR"
+            }
+        }
+    ]
+}
+```
+
 </details>
