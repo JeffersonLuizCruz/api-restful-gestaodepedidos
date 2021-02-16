@@ -45,9 +45,34 @@ spring.jackson.default-property-inclusion= non-null
     "name": "Hugo",
     "email": "hugo@gmail.com",
     "password": "123456789",
-    "role": "SIMPLE"
+    "role": "ADMINISTRATOR"
 }
 ```
+
+### Rota[POST]
+- Login e Senha.
+[POST] http://localhost:8080/users/login
+
+#### Body:
+```
+{
+    "email": "hugo@gmail.com",
+    "password": "123456789"
+}
+```
+### Reponse Token JWT:
+>
+```
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.
+    eyJzdWIiOiJodWdvQGdtYWlsLmNvbSIsImV4cCI6MTYxMzkxODcxMCwicm9sZSI6WyJST0xFX0FETUlOSVNUUkFUT1IiXX0.
+    hAFvi5vIQq_SN6_hb4GBx2bvKWCZrV5hxpc9R6en7EenoFlH35UU3S0bim0kfLXKluRwR4y3lwM4LKGrovAcLA",
+    "expire": 1613918710023,
+    "tokenProvider": "Dearer"
+}
+```
+>
+
 ### Rota[PUT]
 - Editar Usuário.
 [PUT] http://localhost:8080/users/1
