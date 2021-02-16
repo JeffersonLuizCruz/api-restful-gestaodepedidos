@@ -23,6 +23,11 @@ import com.restful.gestaodepedidos.repository.UserRepository;
 import com.restful.gestaodepedidos.specification.UserSpecification;
 import com.restful.gestaodepedidos.util.HashUtil;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
 @Service
 public class UserService implements UserDetailsService{
 	

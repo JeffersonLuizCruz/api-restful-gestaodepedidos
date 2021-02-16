@@ -9,6 +9,12 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.restful.gestaodepedidos.domain.User;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
 public class UserSpecification {
 	
 	public static Specification<User> search(String text){

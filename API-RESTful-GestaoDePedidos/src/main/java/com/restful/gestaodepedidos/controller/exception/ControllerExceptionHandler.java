@@ -1,5 +1,11 @@
 package com.restful.gestaodepedidos.controller.exception;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,18 +52,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler{
 		
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);	
 	}
-	/*
-	 * http://localhost:8080/users/login
-	 * Body:
-	 * {
-    		"email": "jeffersongmail.com",
-    		"password": "1234567"
-		}
-		
-		O método handleMethodArgumentNotValid() personaliza erros de execução json.
-		Todas notações @Notnull ou @Nulblank e outras terão mensagem automatizada.
-	 * */
-	
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 			MethodArgumentNotValidException ex,

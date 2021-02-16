@@ -1,5 +1,11 @@
 package com.restful.gestaodepedidos.controller.exception;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,10 +14,6 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ApiErrorList extends ApiError{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private List<String> errors;

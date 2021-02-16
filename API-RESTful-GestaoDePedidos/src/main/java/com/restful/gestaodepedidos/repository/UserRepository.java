@@ -12,6 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.restful.gestaodepedidos.domain.User;
 import com.restful.gestaodepedidos.domain.enums.Role;
 
+
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User>{
 	

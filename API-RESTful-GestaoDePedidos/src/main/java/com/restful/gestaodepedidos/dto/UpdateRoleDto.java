@@ -10,6 +10,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter

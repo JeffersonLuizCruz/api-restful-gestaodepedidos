@@ -28,6 +28,12 @@ import com.restful.gestaodepedidos.controller.exception.ApiError;
 import io.jsonwebtoken.Claims;
 
 /**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
+/**
  *OncePerRequestFilter: garante que cada requisição é tratada uma de cada vez.
  **/
 public class AuthorizationFilter extends OncePerRequestFilter{

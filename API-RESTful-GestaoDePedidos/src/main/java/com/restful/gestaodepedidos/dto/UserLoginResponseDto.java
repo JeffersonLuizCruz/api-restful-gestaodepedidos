@@ -5,10 +5,11 @@ import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/*Resposta do login depois de autenticado.
- *A resposta tem informação do, token, tempo de expiração do token e o provedor do token.
- * 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
  * */
+
 @Getter
 @AllArgsConstructor
 public class UserLoginResponseDto implements Serializable{

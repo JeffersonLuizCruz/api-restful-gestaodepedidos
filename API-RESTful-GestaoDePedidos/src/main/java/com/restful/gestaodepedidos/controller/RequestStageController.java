@@ -28,7 +28,6 @@ public class RequestStageController {
 
 	@PostMapping
 	public ResponseEntity<RequestStage> save(@RequestBody @Valid RequestStageDto stageDto){
-		
 		RequestStage stage = stageDto.transformToRequestStage();
 		RequestStage createStage = stageService.save(stage);
 		
@@ -37,7 +36,6 @@ public class RequestStageController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<RequestStage> getById(@PathVariable Long id){
-		
 		RequestStage stage = stageService.getById(id);
 		
 		return ResponseEntity.ok(stage);

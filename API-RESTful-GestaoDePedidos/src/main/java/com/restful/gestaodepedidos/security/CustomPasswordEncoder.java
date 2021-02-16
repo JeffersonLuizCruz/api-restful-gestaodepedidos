@@ -5,6 +5,12 @@ import org.springframework.stereotype.Component;
 
 import com.restful.gestaodepedidos.util.HashUtil;
 
+
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
 @Component
 public class CustomPasswordEncoder implements PasswordEncoder{
 

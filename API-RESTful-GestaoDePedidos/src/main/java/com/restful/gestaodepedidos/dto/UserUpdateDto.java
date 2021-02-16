@@ -15,6 +15,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
 @Getter @Setter
 public class UserUpdateDto {
 	

@@ -1,5 +1,11 @@
 package com.restful.gestaodepedidos.exception;
 
+
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
 public class NotFoundException extends RuntimeException{
 
 

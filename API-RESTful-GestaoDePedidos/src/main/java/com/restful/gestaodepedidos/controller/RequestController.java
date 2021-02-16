@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,7 +43,6 @@ public class RequestController {
 	
 	@PostMapping
 	public ResponseEntity<Request> save(@RequestBody @Valid RequestDto requestDto){
-		
 		Request request = requestDto.transformToRequest();
 		Request createRequest = requestService.save(request);
 		
@@ -49,43 +50,37 @@ public class RequestController {
 	}
 	
 	@PreAuthorize("accessManager.isOwnerRequest(#id)")
-	//@CacheEvict(value = "requests", allEntries = true)
+	@CacheEvict(value = "requests", allEntries = true)
 	@PutMapping("/{id}")
-	public ResponseEntity<Request> update(@PathVariable Long id, @RequestBody @Valid RequestUpdateDto requestDto){
-		
+	public ResponseEntity<Request> update(@PathVariable Long id, @RequestBody @Valid RequestUpdateDto requestDto){	
 		Request request = requestDto.transformToRequest();
 		request.setId(id);
-		
 		Request updateRequest = requestService.update(request);
 		
 		return ResponseEntity.ok(updateRequest);
 	}
 	
-	//@Cacheable(value = "requests")
+	@Cacheable(value = "requests")
 	@GetMapping("/{id}")
 	public ResponseEntity<Request> getById(@PathVariable Long id){
-		
 		Optional<Request> request = Optional.of(requestService.getById(id));
 		
 		return ResponseEntity.ok(request.get());
 	}
 	
-	//@Cacheable(value = "requests")
+	@Cacheable(value = "requests")
 	@GetMapping 
 	public ResponseEntity<PageModel<Request>> listAllByOnLazyModel(@RequestParam Map<String, String> params){
-		
 		PageRequestModel pr = new PageRequestModel(params);
-		
 		PageModel<Request> pm = requestService.listAllByOnLazyModel(pr);
 		
 		return ResponseEntity.ok(pm);
 	}
 	
 	//http:localhost:8080/requests/1/request-stages
-	//@Cacheable(value = "requests")
+	@Cacheable(value = "requests")
 	@GetMapping("/{id}/request-stages")
 	public ResponseEntity<PageModel<RequestStage>> listAllStageById(@PathVariable Long id, @RequestParam Map<String, String> params){
-		
 		PageRequestModel pr = new PageRequestModel(params);
 		PageModel<RequestStage> pm = stageService.listAllByRequestIdOnLazyModel(id, pr);
 		

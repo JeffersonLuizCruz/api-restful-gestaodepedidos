@@ -12,6 +12,12 @@ import com.restful.gestaodepedidos.exception.NotFoundException;
 import com.restful.gestaodepedidos.repository.UserRepository;
 import com.restful.gestaodepedidos.service.RequestService;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
 //Classe de autorização de acesso
 @Component(value = "accessManager")
 public class AccessManager {

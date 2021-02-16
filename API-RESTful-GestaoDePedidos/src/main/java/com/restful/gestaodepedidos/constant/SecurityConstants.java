@@ -1,5 +1,12 @@
 package com.restful.gestaodepedidos.constant;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
+
 public class SecurityConstants {
 	
 	public static final int JWT_EXP_DAYS = 5; 

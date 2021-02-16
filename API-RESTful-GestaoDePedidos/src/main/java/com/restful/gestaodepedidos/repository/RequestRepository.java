@@ -13,6 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.restful.gestaodepedidos.domain.Request;
 import com.restful.gestaodepedidos.domain.enums.RequestState;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
+
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long>{
 	

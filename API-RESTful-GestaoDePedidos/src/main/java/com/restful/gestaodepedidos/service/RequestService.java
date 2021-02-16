@@ -16,6 +16,11 @@ import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.exception.NotFoundException;
 import com.restful.gestaodepedidos.repository.RequestRepository;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
 @Service
 public class RequestService {
 	

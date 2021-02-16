@@ -16,6 +16,11 @@ import com.restful.gestaodepedidos.domain.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
 
 @Getter @Setter
 public class UserRequestDto {

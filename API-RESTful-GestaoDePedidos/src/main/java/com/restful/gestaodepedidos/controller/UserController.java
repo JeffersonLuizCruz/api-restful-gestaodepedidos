@@ -71,8 +71,8 @@ public class UserController {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userDto){
 		User user = userDto.transformToUser();
-		
 		user.setId(id);
+		
 		User updateUser = userService.update(user);
 		
 		return ResponseEntity.ok(updateUser);
@@ -117,7 +117,7 @@ public class UserController {
 	}
 	
 	//http:localhost:8080/users/1/requests 
-	//@Cacheable("users")
+	@Cacheable("users")
 	@GetMapping(value = "/{id}/requests")
 	public ResponseEntity<PageModel<Request>> listAllByRequestId(
 			@PathVariable Long id,

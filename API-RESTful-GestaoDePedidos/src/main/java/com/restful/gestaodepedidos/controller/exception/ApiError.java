@@ -1,5 +1,11 @@
 package com.restful.gestaodepedidos.controller.exception;
 
+/**
+ * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
+ *
+ * */
+
+
 import java.io.Serializable;
 import java.util.Date;
 
