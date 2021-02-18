@@ -151,9 +151,10 @@ spring.jackson.default-property-inclusion= non-null
     ]
 }
 ```
-
 </details>
-### Recurso Request
+
+### Recurso Requests
+
 <details>
 <summary><strong> Endpoint Pedido(/requests/**)</strong></summary>
     
@@ -293,7 +294,9 @@ spring.jackson.default-property-inclusion= non-null
 }
 ```
 </details>
-### Recurso Request-Stage
+
+### Recurso Request-Stages
+
 <details>
 <summary><strong> Endpoint Estágio deo Pedido(OPEN | IN_PROGRESS | CLOSED)(/request-stages/**)</strong></summary>
     
