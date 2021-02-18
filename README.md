@@ -30,7 +30,7 @@ spring.jackson.default-property-inclusion= non-null
 ## Diagrama de Classe
 ![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
 
-## Recursos da cadama User
+### Recurso User
 
 <details>
 <summary><strong> Endpoint Usuário(/users/**)</strong></summary>
@@ -153,6 +153,7 @@ spring.jackson.default-property-inclusion= non-null
 ```
 
 </details>
+### Recurso Request
 <details>
 <summary><strong> Endpoint Pedido(/requests/**)</strong></summary>
     
@@ -292,6 +293,7 @@ spring.jackson.default-property-inclusion= non-null
 }
 ```
 </details>
+### Recurso Request-Stage
 <details>
 <summary><strong> Endpoint Estágio deo Pedido(OPEN | IN_PROGRESS | CLOSED)(/request-stages/**)</strong></summary>
     
