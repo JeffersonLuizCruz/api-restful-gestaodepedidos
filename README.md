@@ -1,15 +1,51 @@
-# API-RESTful : Gestao De Pedidos
-> Back-end Java feito com Spring Boot para criação de API REST... Logo em breve essa API terá integração com Angular.
+<h1 align="center">
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/api-restful-gestaodepedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/logo3.png" />
+</h1>
 
-Essa API foi feita para cadastrar chamados de pedidos. E cada usuário poderá acompanhar os estágios de cada pedido feito. Cada usuário tem sua autorização de acesso dentro da aplcação. Os administradores tem o poder de encerar os pedidos e alterar seus estágios(OPEM, IN_PROGRESS, CLOSED).
+<h3 align="center">
+  REST API HelpDesk - BackEnd - Spring Boot
+</h3>
 
-## Dependências
-- Java 11
-- Postgres
-- Spring Boot 3.2.1
-- JPA
-- Spring Security
-- JUnit 5
+<p align="center">Aplicação simples Help Desk de controle de chamados.</p>
+
+![GitHub repo size](https://img.shields.io/github/repo-size/JeffersonLuizCruz/financial)  ![Packagist License](https://img.shields.io/packagist/l/JeffersonLuizCruz/financial)  ![GitHub top language](https://img.shields.io/github/languages/top/JeffersonLuizCruz/financial)  ![GitHub language count](https://img.shields.io/github/languages/count/JeffersonLuizCruz/financial?label=Linguagem%20de%20Programa%C3%A7%C3%A3o)  ![GitHub followers](https://img.shields.io/github/followers/JeffersonLuizCruz?style=social)
+
+<p align="center">
+  <a href="#-sobre">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-diagrama">Diagrama de Classe</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-links">Links</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-contato">Contato</a>
+</p>
+
+## :page_with_curl: Sobre o projeto <a name="-sobre"/></a>
+
+> Essa aplicação é uma base para construção de um sistema de Help Desk. O foco é garantir o nível de permissão de cada usuário dentro do sistema. O administrador é o único capaz alterar o estágio de um chamado e também encerrá-lo. Enquanto um usuário simples somente cria um chamado e faz consulta. 
+
+O objetivo da aplicação é registrar os chamados solicitados pelo usuário e ter o controle desses chamados. O administrador da aplicação é o único capaz de alterar o estágio de um chamado. Os estágios de um chamado são: Chamado Aberto(OPEN), Chamado em Andamento(IN PROGRESS) e Finalizado(CLOSED). O usuário comum somente cria e consulta seus chamados e somente o administrador logado na aplicação pode fazer qualquer alteração.
+
+
+## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
+<h1 align="center">
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png" />
+</h1>
+
+## Tecnologia:
+- [x] Java 11<br>
+- [x] Spring Boot 2.4.4<br>
+- [x] Spring Data - JPA/Hibernate<br>
+- [x] Banco de Dados PostgreSQL<br>
+- [x] Spring Secutity - OAuth 2<br>
+- [ ] Front-end Angular<br>
+- [ ] Implementação no Heroku<br>
+- [ ] Amazon S3<br>
+
+## Construção do Projeto:
+- [x] Criação de Interface Service (garantir baixo acoplamento)<br>
+- [x] CRUD (ORM Hibernate - Ambiente de teste)<br>
+- [x] Exception Personalizada
+- [x] DTO (Aplicação DTO na camada de Controller)
+- [x] Consulta e Busca Paginada
+- [x] Autenticação e Autorização (JWT)
 
 ## Start da Aplicação
 ```
@@ -30,7 +66,7 @@ spring.jackson.default-property-inclusion= non-null
 ## Diagrama de Classe
 ![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
 
-## Recursos da cadama User
+### Recurso User
 
 <details>
 <summary><strong> Endpoint Usuário(/users/**)</strong></summary>
@@ -151,8 +187,10 @@ spring.jackson.default-property-inclusion= non-null
     ]
 }
 ```
-
 </details>
+
+### Recurso Requests
+
 <details>
 <summary><strong> Endpoint Pedido(/requests/**)</strong></summary>
     
@@ -292,6 +330,9 @@ spring.jackson.default-property-inclusion= non-null
 }
 ```
 </details>
+
+### Recurso Request-Stages
+
 <details>
 <summary><strong> Endpoint Estágio deo Pedido(OPEN | IN_PROGRESS | CLOSED)(/request-stages/**)</strong></summary>
     
@@ -329,3 +370,5 @@ spring.jackson.default-property-inclusion= non-null
 ...
  ```   
 </details>
+
+
