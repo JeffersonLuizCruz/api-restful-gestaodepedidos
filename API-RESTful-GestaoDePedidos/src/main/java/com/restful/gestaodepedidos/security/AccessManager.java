@@ -12,20 +12,14 @@ import com.restful.gestaodepedidos.repository.UserRepository;
 import com.restful.gestaodepedidos.services.RequestService;
 import com.restful.gestaodepedidos.services.exceptions.NotFoundException;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
 
-
-//Classe de autorização de acesso
 @Component(value = "accessManager")
 public class AccessManager {
 	
 	@Autowired private UserRepository userRepository;
 	@Autowired private RequestService requestService;
 	
-	//verifica o usuário a modificar se é exatamente igual ao usuário que há no token.
+	
 	public boolean isOwner(Long id) {
 		
 		String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -38,7 +32,7 @@ public class AccessManager {
 		return user.getId() == id;
 	}
 	
-	//verifica se o usuário presente no token é exatamente igual ao usuário do pedido.
+	
 	public boolean isOwnerRequest(Long id) {
 		
 		String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

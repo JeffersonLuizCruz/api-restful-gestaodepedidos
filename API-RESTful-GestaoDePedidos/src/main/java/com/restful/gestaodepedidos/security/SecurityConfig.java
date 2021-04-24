@@ -18,18 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.restful.gestaodepedidos.services.UserService;
 
  
-/**
- * @EnableGlobalMethodSecurity: Essa notação ativa as autorizações de acesso. Ela trabalha em conjunto com
- * outras anotações de autorização. Por ex:. Esta anotação ativa essa -> @Secured({"ROLE_ADMINISTRATOR"}) .
- * Também ativa essa -> @PreAuthorize("@accessManager.isOwner(#id)") .
- * Ambas se encontra no UserController .
- * 
- *O parametro securedEnabled = true - ativa @Secured({"ROLE_ADMINISTRATOR"})
- *O parametro prePostEnabled = true - ativa @PreAuthorize("@accessManager.isOwner(#id)")
- */
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Configuration
-@EnableWebSecurity //habilita os recursos de segurança em nossa aplicação.
+@EnableWebSecurity 
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired private UserService userService;
@@ -50,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 		public void configure(WebSecurity web) throws Exception {
-		//Torna a rota de login publica. Por padrão o Spring Security bloqueia todas as rotas.
 			web.ignoring().antMatchers(HttpMethod.POST, "/users/login");
 			super.configure(web);
 		}

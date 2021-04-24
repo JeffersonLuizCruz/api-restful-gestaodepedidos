@@ -1,10 +1,5 @@
 package com.restful.gestaodepedidos.controllers.exceptions;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
-
 
 import java.util.ArrayList;
 import java.util.Date;

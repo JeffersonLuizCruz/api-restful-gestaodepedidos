@@ -1,10 +1,5 @@
 package com.restful.gestaodepedidos.services.pagemodel;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
-
 import java.io.Serializable;
 import java.util.List;
 

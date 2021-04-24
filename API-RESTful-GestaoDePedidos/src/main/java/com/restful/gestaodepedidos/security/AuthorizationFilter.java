@@ -27,39 +27,28 @@ import com.restful.gestaodepedidos.controllers.exceptions.ApiError;
 
 import io.jsonwebtoken.Claims;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
 
-
-/**
- *OncePerRequestFilter: garante que cada requisição é tratada uma de cada vez.
- **/
 public class AuthorizationFilter extends OncePerRequestFilter{
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		//Busca o possível token que espera existir.
+		
 		String jwt = request.getHeader(HttpHeaders.AUTHORIZATION);
 		
-		/**
-		 * Se este token estiver nulo ou não iniciar com "Dearer" da classe 
-		 * SecurityConstants lance uma Exception.
-		 */
+
 		if(jwt == null || !jwt.startsWith(SecurityConstants.JWT_PROVIDER)) {
 			ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED.value(), SecurityConstants.JWT_INVALID_MSG, new Date());
-			//Se a autorização for negada na resposta será lençada uma exception
+			
 			PrintWriter writer = response.getWriter();
 			
-			//Converte o objeto apiError em uma string
+		
 			ObjectMapper mapper = new ObjectMapper();
 			String apiErrorString = mapper.writeValueAsString(apiError);
 			
 			writer.write(apiErrorString);
 			
-			//Coloca algumas informações na resposta
+		
 			response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			
@@ -80,23 +69,22 @@ public class AuthorizationFilter extends OncePerRequestFilter{
 				grantedAuthorities.add(new SimpleGrantedAuthority(role));
 			});
 			
-			//Monta o autenticação do usuário para colocar no contexto de segurança.
-			//É aqui que o usuário fica autenticado.
+
 			Authentication authentication = new UsernamePasswordAuthenticationToken(email, null, grantedAuthorities);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
 		} catch (Exception e) {
 			ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED.value(), e.getMessage(), new Date());
-			//Se a autorização for negada na resposta será lençada uma exception
+			
 			PrintWriter writer = response.getWriter();
 			
-			//Converte o objeto apiError em uma string
+		
 			ObjectMapper mapper = new ObjectMapper();
 			String apiErrorString = mapper.writeValueAsString(apiError);
 			
 			writer.write(apiErrorString);
 			
-			//Coloca algumas informações na resposta
+		
 			response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			
