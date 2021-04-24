@@ -20,13 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
-
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
@@ -41,9 +34,6 @@ public class RequestStage implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;
 	
-	/**
-	 * @Column(updatable = false) -> É uma data fixa. Não sofre alteração.
-	 * */
 	@Column(name = "realization_date", nullable = false, updatable = false) 
 	private Instant realizationDate;
 	

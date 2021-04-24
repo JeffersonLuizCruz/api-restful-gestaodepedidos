@@ -13,19 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.restful.gestaodepedidos.entities.Request;
 import com.restful.gestaodepedidos.enums.RequestState;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
-
-
-
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long>{
 	
 	public List<Request> findAllByOwnerId(Long id);
 	
-	//paginação modo lazy
 	public Page<Request> findAllByOwnerId(Long id, Pageable pageable);
 	
 	@Transactional(readOnly = false)

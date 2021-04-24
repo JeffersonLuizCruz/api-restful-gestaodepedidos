@@ -25,19 +25,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
-
-
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
 @Entity(name = "request")
 public class Request implements Serializable{
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -50,9 +42,6 @@ public class Request implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;
 	
-	/**
-	 * @Column(updatable = false) -> É uma data fixa. Não sofre alteração.
-	 * */
 	@Column(name = "creation_date", nullable = false, updatable = false) 
 	private Instant creationDate;
 	
@@ -64,17 +53,7 @@ public class Request implements Serializable{
 	@JoinColumn(name = "owner_id", nullable = false)
 	private User owner;
 	
-	/**
-	 * Nota: Notação depreciada
-	 * @Getter(onMethod = @__(@JsonIgnore)) -> Ignora o atributo durante a serialização.
-	 * @Setter(onMethod = @__(@JsonProperty) -> Deserializa o atributo json para objeto java. 
-	 * 
-	 * Substituída:
-	 * 
-	 *  @Getter(onMethod_=@JsonIgnore)
-	 *  @Setter(onMethod_=@JsonProperty)
-	 * */
-	@Getter(onMethod = @__(@JsonIgnore))//Ignora a requisição durante  serialização para Json
+	@Getter(onMethod = @__(@JsonIgnore))
 	@OneToMany(mappedBy = "request")
 	private List<RequestStage> stages = new ArrayList<>();
 

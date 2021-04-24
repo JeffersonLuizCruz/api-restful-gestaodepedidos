@@ -9,12 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.restful.gestaodepedidos.entities.RequestStage;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
-
-
 @Repository
 public interface RequestStageRepository extends JpaRepository<RequestStage, Long>{
 	

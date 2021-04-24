@@ -22,13 +22,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
-
-
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
@@ -46,16 +39,6 @@ public class User implements Serializable{
 	@Column(length = 100, nullable = false, unique = true)
 	private String email;
 	
-	/**
-	 * Nota: Notação depreciada
-	 * @Getter(onMethod = @__(@JsonIgnore)) -> Ignora o atributo durante a serialização.
-	 * @Setter(onMethod = @__(@JsonProperty) -> Deserializa o atributo json para objeto java. 
-	 * 
-	 * Substituída:
-	 * 
-	 *  @Getter(onMethod_=@JsonIgnore)
-	 *  @Setter(onMethod_=@JsonProperty)
-	 * */
 	@Setter(onMethod_=@JsonProperty)
 	@Getter(onMethod_=@JsonIgnore)
 	@Column(nullable = false)
