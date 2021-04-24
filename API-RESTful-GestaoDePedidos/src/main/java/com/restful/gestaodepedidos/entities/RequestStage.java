@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.domain;
+package com.restful.gestaodepedidos.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.enums.RequestState;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

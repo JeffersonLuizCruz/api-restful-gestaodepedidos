@@ -6,9 +6,9 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.restful.gestaodepedidos.domain.Request;
-import com.restful.gestaodepedidos.domain.RequestStage;
-import com.restful.gestaodepedidos.domain.User;
+import com.restful.gestaodepedidos.entities.Request;
+import com.restful.gestaodepedidos.entities.RequestStage;
+import com.restful.gestaodepedidos.entities.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

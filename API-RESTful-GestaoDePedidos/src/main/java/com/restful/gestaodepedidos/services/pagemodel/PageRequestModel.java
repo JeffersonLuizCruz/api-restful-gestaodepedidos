@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.domain.model;
+package com.restful.gestaodepedidos.services.pagemodel;
 
 import java.util.Map;
 

@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.restful.gestaodepedidos.service.UserService;
+import com.restful.gestaodepedidos.services.UserService;
 
  
 /**

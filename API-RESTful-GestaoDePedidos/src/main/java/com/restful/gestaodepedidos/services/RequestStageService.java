@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.service;
+package com.restful.gestaodepedidos.services;
 
 import java.time.Instant;
 import java.util.List;
@@ -9,13 +9,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.restful.gestaodepedidos.domain.RequestStage;
-import com.restful.gestaodepedidos.domain.enums.RequestState;
-import com.restful.gestaodepedidos.domain.model.PageModel;
-import com.restful.gestaodepedidos.domain.model.PageRequestModel;
-import com.restful.gestaodepedidos.exception.NotFoundException;
+import com.restful.gestaodepedidos.entities.RequestStage;
+import com.restful.gestaodepedidos.enums.RequestState;
 import com.restful.gestaodepedidos.repository.RequestRepository;
 import com.restful.gestaodepedidos.repository.RequestStageRepository;
+import com.restful.gestaodepedidos.services.exceptions.NotFoundException;
+import com.restful.gestaodepedidos.services.pagemodel.PageModel;
+import com.restful.gestaodepedidos.services.pagemodel.PageRequestModel;
 
 /**
  * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com

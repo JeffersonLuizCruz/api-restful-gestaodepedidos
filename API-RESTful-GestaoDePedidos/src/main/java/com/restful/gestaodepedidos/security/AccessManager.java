@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.restful.gestaodepedidos.domain.Request;
-import com.restful.gestaodepedidos.domain.User;
-import com.restful.gestaodepedidos.exception.NotFoundException;
+import com.restful.gestaodepedidos.entities.Request;
+import com.restful.gestaodepedidos.entities.User;
 import com.restful.gestaodepedidos.repository.UserRepository;
-import com.restful.gestaodepedidos.service.RequestService;
+import com.restful.gestaodepedidos.services.RequestService;
+import com.restful.gestaodepedidos.services.exceptions.NotFoundException;
 
 /**
  * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com

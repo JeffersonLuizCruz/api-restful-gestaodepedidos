@@ -7,7 +7,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.restful.gestaodepedidos.domain.User;
+import com.restful.gestaodepedidos.entities.User;
 
 /**
  * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
@@ -31,8 +31,8 @@ public class UserSpecification {
 				String likeTerm = "%" + text + "%";
 				
 				Predicate predicate = cb.or(cb.like(root.get("name"), likeTerm),
-									  cb.or(cb.like(root.get("email"), likeTerm),
-									  cb.or(cb.like(root.get("role").as(String.class), likeTerm))));
+						      cb.or(cb.like(root.get("email"), likeTerm),
+						      cb.or(cb.like(root.get("role").as(String.class), likeTerm))));
 									  
 				return predicate;
 			}

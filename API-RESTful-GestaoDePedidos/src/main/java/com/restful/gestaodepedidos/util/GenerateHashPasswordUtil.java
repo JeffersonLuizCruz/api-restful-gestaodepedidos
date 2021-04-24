@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.restful.gestaodepedidos.service.UserService;
+import com.restful.gestaodepedidos.services.UserService;
 /**
  * @deprecated
  * */

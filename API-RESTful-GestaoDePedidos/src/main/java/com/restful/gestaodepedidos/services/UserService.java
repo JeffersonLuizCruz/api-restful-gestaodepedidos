@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.service;
+package com.restful.gestaodepedidos.services;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,11 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.restful.gestaodepedidos.domain.User;
-import com.restful.gestaodepedidos.domain.model.PageModel;
-import com.restful.gestaodepedidos.domain.model.PageRequestModel;
-import com.restful.gestaodepedidos.exception.NotFoundException;
+import com.restful.gestaodepedidos.entities.User;
 import com.restful.gestaodepedidos.repository.UserRepository;
+import com.restful.gestaodepedidos.services.exceptions.NotFoundException;
+import com.restful.gestaodepedidos.services.pagemodel.PageModel;
+import com.restful.gestaodepedidos.services.pagemodel.PageRequestModel;
 import com.restful.gestaodepedidos.specification.UserSpecification;
 import com.restful.gestaodepedidos.util.HashUtil;
 

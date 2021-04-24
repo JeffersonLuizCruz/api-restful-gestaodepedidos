@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.exception;
+package com.restful.gestaodepedidos.services.exceptions;
 
 
 /**

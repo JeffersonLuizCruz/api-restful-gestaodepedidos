@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.restful.gestaodepedidos.domain.Request;
-import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.entities.Request;
+import com.restful.gestaodepedidos.enums.RequestState;
 
 /**
  * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com

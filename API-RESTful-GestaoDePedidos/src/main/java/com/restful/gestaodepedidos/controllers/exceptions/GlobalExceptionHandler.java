@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.controller.exception;
+package com.restful.gestaodepedidos.controllers.exceptions;
 
 /**
  * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.restful.gestaodepedidos.exception.NotFoundException;
-import com.restful.gestaodepedidos.exception.UnauthorizationException;
+import com.restful.gestaodepedidos.services.exceptions.NotFoundException;
+import com.restful.gestaodepedidos.services.exceptions.UnauthorizationException;
 
 
 @ControllerAdvice
-public class ControllerExceptionHandler extends ResponseEntityExceptionHandler{
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 	
 	@ExceptionHandler(NotFoundException.class)// Método personalizado
 	public ResponseEntity<ApiError> handlerNotFoundException(NotFoundException ex){

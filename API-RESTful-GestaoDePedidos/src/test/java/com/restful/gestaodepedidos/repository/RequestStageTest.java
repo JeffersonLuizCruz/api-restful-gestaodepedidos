@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.restful.gestaodepedidos.domain.Request;
-import com.restful.gestaodepedidos.domain.RequestStage;
-import com.restful.gestaodepedidos.domain.User;
-import com.restful.gestaodepedidos.domain.enums.RequestState;
+import com.restful.gestaodepedidos.entities.Request;
+import com.restful.gestaodepedidos.entities.RequestStage;
+import com.restful.gestaodepedidos.entities.User;
+import com.restful.gestaodepedidos.enums.RequestState;
 
 @SpringBootTest
 public class RequestStageTest {

@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.controller;
+package com.restful.gestaodepedidos.controllers;
 
 
 import javax.validation.Valid;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.restful.gestaodepedidos.domain.RequestStage;
 import com.restful.gestaodepedidos.dto.RequestStageDto;
-import com.restful.gestaodepedidos.service.RequestStageService;
+import com.restful.gestaodepedidos.entities.RequestStage;
+import com.restful.gestaodepedidos.services.RequestStageService;
 
 import io.swagger.annotations.Api;
 

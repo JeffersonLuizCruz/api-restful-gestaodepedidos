@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.restful.gestaodepedidos.domain.User;
-import com.restful.gestaodepedidos.domain.enums.Role;
+import com.restful.gestaodepedidos.entities.User;
+import com.restful.gestaodepedidos.enums.Role;
 
 @SpringBootTest
 public class UserRepositoryTest {

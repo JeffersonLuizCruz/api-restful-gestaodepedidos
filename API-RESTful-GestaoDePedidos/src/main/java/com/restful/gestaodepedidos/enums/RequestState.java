@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.domain.enums;
+package com.restful.gestaodepedidos.enums;
 
 /**
  * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com

@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.domain;
+package com.restful.gestaodepedidos.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.restful.gestaodepedidos.domain.enums.Role;
+import com.restful.gestaodepedidos.enums.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

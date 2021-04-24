@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.controller;
+package com.restful.gestaodepedidos.controllers;
 
 
 import java.util.List;
@@ -28,19 +28,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.restful.gestaodepedidos.domain.Request;
-import com.restful.gestaodepedidos.domain.User;
-import com.restful.gestaodepedidos.domain.model.PageModel;
-import com.restful.gestaodepedidos.domain.model.PageRequestModel;
 import com.restful.gestaodepedidos.dto.UpdateRoleDto;
 import com.restful.gestaodepedidos.dto.UserLoginDto;
 import com.restful.gestaodepedidos.dto.UserLoginResponseDto;
 import com.restful.gestaodepedidos.dto.UserRequestDto;
 import com.restful.gestaodepedidos.dto.UserUpdateDto;
+import com.restful.gestaodepedidos.entities.Request;
+import com.restful.gestaodepedidos.entities.User;
 import com.restful.gestaodepedidos.security.AccessManager;
 import com.restful.gestaodepedidos.security.JwtManager;
-import com.restful.gestaodepedidos.service.RequestService;
-import com.restful.gestaodepedidos.service.UserService;
+import com.restful.gestaodepedidos.services.RequestService;
+import com.restful.gestaodepedidos.services.UserService;
+import com.restful.gestaodepedidos.services.pagemodel.PageModel;
+import com.restful.gestaodepedidos.services.pagemodel.PageRequestModel;
 
 import io.swagger.annotations.Api;
 

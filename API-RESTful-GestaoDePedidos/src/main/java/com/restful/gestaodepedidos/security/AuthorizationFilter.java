@@ -23,7 +23,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restful.gestaodepedidos.constant.SecurityConstants;
-import com.restful.gestaodepedidos.controller.exception.ApiError;
+import com.restful.gestaodepedidos.controllers.exceptions.ApiError;
 
 import io.jsonwebtoken.Claims;
 

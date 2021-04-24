@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.restful.gestaodepedidos.domain.User;
-import com.restful.gestaodepedidos.domain.enums.Role;
+import com.restful.gestaodepedidos.entities.User;
+import com.restful.gestaodepedidos.enums.Role;
 
 
 /**

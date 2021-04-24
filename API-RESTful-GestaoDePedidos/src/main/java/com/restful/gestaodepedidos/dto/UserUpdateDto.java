@@ -7,9 +7,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.restful.gestaodepedidos.domain.Request;
-import com.restful.gestaodepedidos.domain.RequestStage;
-import com.restful.gestaodepedidos.domain.User;
+import com.restful.gestaodepedidos.entities.Request;
+import com.restful.gestaodepedidos.entities.RequestStage;
+import com.restful.gestaodepedidos.entities.User;
 
 import lombok.Getter;
 import lombok.Setter;

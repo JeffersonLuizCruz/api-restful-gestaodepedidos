@@ -2,7 +2,7 @@ package com.restful.gestaodepedidos.dto;
 
 import javax.validation.constraints.NotNull;
 
-import com.restful.gestaodepedidos.domain.enums.Role;
+import com.restful.gestaodepedidos.enums.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

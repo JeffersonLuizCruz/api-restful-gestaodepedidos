@@ -1,4 +1,4 @@
-package com.restful.gestaodepedidos.controller.exception;
+package com.restful.gestaodepedidos.controllers.exceptions;
 
 /**
  * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
