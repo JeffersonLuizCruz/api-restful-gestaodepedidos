@@ -23,10 +23,6 @@ import com.restful.gestaodepedidos.services.pagemodel.PageRequestModel;
 import com.restful.gestaodepedidos.specification.UserSpecification;
 import com.restful.gestaodepedidos.util.HashUtil;
 
-/**
- * @author Jefferson Luiz / jefferson.luiz.cruz@gmail.com
- *
- * */
 
 @Service
 public class UserService implements UserDetailsService{
