@@ -13,8 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter @Setter
 public class ApiError implements Serializable{
-
-
 	private static final long serialVersionUID = 1L;
 	
 	private int code;
