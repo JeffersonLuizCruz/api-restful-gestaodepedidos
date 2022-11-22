@@ -63,8 +63,6 @@ spring.jpa.properties.hibernate.format_sql=true
 #Valores nulos(null) serão ignorados na resposta json.
 spring.jackson.default-property-inclusion= non-null
 ```
-## Diagrama de Classe
-![alt text](https://github.com/JeffersonLuizCruz/API-RESTful-GestaoDePedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/diagrama-class.png)
 
 ### Recurso User
 
