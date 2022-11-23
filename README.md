@@ -17,9 +17,9 @@
 
 ## :page_with_curl: Sobre o projeto <a name="-sobre"/></a>
 
-> Essa aplicação é uma base para construção de um sistema de Help Desk. O foco é garantir o nível de permissão de cada usuário dentro do sistema. O administrador é o único capaz alterar o estágio de um chamado e também encerrá-lo. Enquanto um usuário simples somente cria um chamado e faz consulta. 
+> Essa é uma API REST e tem como objeto entender o ecossistema Spring Security e JWT. Os conceitos aplicados foram: uso das anotations de segurança do Spring Security, criação do token jwt, autorização e autenticação. Cada usuário tem seu nível de autorização podendo apenas consumir seu recurso disponibilizado. Também foi aplicado o uso de  boas práticas de geração de exceptions para quem for consumir a API. 
 
-O objetivo da aplicação é registrar os chamados solicitados pelo usuário e ter o controle desses chamados. O administrador da aplicação é o único capaz de alterar o estágio de um chamado. Os estágios de um chamado são: Chamado Aberto(OPEN), Chamado em Andamento(IN PROGRESS) e Finalizado(CLOSED). O usuário comum somente cria e consulta seus chamados e somente o administrador logado na aplicação pode fazer qualquer alteração.
+O administrador da aplicação é o único capaz de alterar o estágio de um chamado. Os estágios de um chamado são: Chamado Aberto(OPEN), Chamado em Andamento(IN PROGRESS) e Finalizado(CLOSED). O usuário comum somente cria e consulta seus chamados e somente o administrador logado na API pode fazer qualquer alteração.
 
 
 ## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
