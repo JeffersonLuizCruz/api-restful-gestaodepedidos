@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/api-restful-gestaodepedidos/blob/main/API-RESTful-GestaoDePedidos/src/main/resources/tamplate/logo3.png" />
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/api-restful-gestaodepedidos/blob/main/src/main/resources/tamplate/logo3.png" />
 </h1>
 
 <h3 align="center">
